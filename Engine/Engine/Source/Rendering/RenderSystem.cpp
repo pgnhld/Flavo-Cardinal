@@ -20,6 +20,8 @@
 #include "SceneManager.h"
 #include "FlavoRootsGame/Player.h"
 #include "FlavoRootsGame/SceneSpecificData.h"
+#include "FlavoRootsGame/Hologram.h"
+#include "FlavoRootsGame/Water.h"
 
 // Prefer discrete GPU on switchable GPU systems
 extern "C"
@@ -789,8 +791,16 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 
 				// Set proper pixel shader
 				float blendFactor[4] = { Alpha, Alpha, Alpha, Alpha };
-				pDevCon->PSSetShader(forwardPassSimplePS_, nullptr, 0);
-				pDevCon->OMSetBlendState(blendStateForwardPassTransparency_, blendFactor, 0xffffffff);
+				if (meshes[meshIndex].hasComponent<ft_game::Hologram>()) {
+					pDevCon->PSSetShader( forwardPassHologramPS_, nullptr, 0 );
+					pDevCon->OMSetBlendState( blendStateForwardPassTransparencyFromAlpha_, nullptr, 0xffffffff);
+				} else if (meshes[meshIndex].hasComponent<ft_game::Water>()) {
+					pDevCon->PSSetShader( waterPS_, nullptr, 0 );
+					pDevCon->OMSetBlendState( blendStateForwardPassTransparency_, blendFactor, 0xffffffff );				
+				} else {					
+					pDevCon->PSSetShader( forwardPassSimplePS_, nullptr, 0 );
+					pDevCon->OMSetBlendState( blendStateForwardPassTransparency_, blendFactor, 0xffffffff );
+				}
 
 				const FMaterial& meshMaterial = staticmesh->material_;
 				renderer.updateStaticObjectConstantBuffer(matWorld, meshMaterial.uvTiling, meshMaterial.uvOffset, meshMaterial.colorTint.ToVector3(), meshMaterial.specialEffect, meshMaterial.smoothness);
@@ -818,148 +828,148 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 	//------------------------------------------------------------------------
 
 	//// 1) bloom
-	//{
-	//	// Render threshold to fullscreen at first.
-	//	ID3D11RenderTargetView* pOutputs[1] = { bloomThresholdFullOutput.rtv_ };
-	//	pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
+	{
+		// Render threshold to fullscreen at first.
+		ID3D11RenderTargetView* pOutputs[1] = { bloomThresholdFullOutput.rtv_ };
+		pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
 
-	//	ID3D11ShaderResourceView* pInputs[1] = { hdrColorBuffer_.srv_ };
-	//	pDevCon->PSSetShaderResources(0, 1, pInputs);
-	//	pDevCon->PSSetShader(bloomThresholdPS, nullptr, 0);
+		ID3D11ShaderResourceView* pInputs[1] = { hdrColorBuffer_.srv_ };
+		pDevCon->PSSetShaderResources(0, 1, pInputs);
+		pDevCon->PSSetShader(bloomThresholdPS, nullptr, 0);
 
-	//	FullscreenPass::getInstance().renderFullscreen(bloomThresholdFullOutput.width_, bloomThresholdFullOutput.height_);
-
-
-	//	// Perform downsampling.
-	//	// Downsample fullscreen bloom to 1/2 x 1/2
-	//	{
-	//		pDevCon->PSSetShader(pixelShaderSimpleCopy_, nullptr, 0);
-
-	//		pOutputs[0] = bloomColorBuffer_half[1].rtv_;
-	//		pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
-
-	//		pInputs[0] = bloomThresholdFullOutput.srv_;
-	//		pDevCon->PSSetShaderResources(0, 1, pInputs);
-
-	//		FullscreenPass::getInstance().renderFullscreen(bloomColorBuffer_half[1].width_, bloomColorBuffer_half[1].height_);
-	//	}
+		FullscreenPass::getInstance().renderFullscreen(bloomThresholdFullOutput.width_, bloomThresholdFullOutput.height_);
 
 
-	//	// Perform lens flares pass at first - downsample to 1/4 x 1/4 and calculate flares
-	//	{
-	//		pDevCon->PSSetShader(lensFlaresThresholdPS, nullptr, 0);
+		// Perform downsampling.
+		// Downsample fullscreen bloom to 1/2 x 1/2
+		{
+			pDevCon->PSSetShader(pixelShaderSimpleCopy_, nullptr, 0);
 
-	//		pOutputs[0] = lensFlaresTex[1].rtv_;
-	//		pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
+			pOutputs[0] = bloomColorBuffer_half[1].rtv_;
+			pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
 
-	//		pInputs[0] = bloomColorBuffer_half[1].srv_;
-	//		pDevCon->PSSetShaderResources(0, 1, pInputs);
+			pInputs[0] = bloomThresholdFullOutput.srv_;
+			pDevCon->PSSetShaderResources(0, 1, pInputs);
 
-	//		FullscreenPass::getInstance().renderFullscreen(lensFlaresTex[1].width_, lensFlaresTex[1].height_);
-	//	}
-
-	//	// Perform gaussian blur for bloom
-	//	for (uint32 iBlurPass = 0; iBlurPass < 4; ++iBlurPass) {
-
-	//		// Horizontal pass
-	//		pDevCon->PSSetShader(bloomGaussianBlurHPS, nullptr, 0);
-	//		{
-	//			pOutputs[0] = bloomColorBuffer_half[0].rtv_;
-	//			pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
-
-	//			pInputs[0] = bloomColorBuffer_half[1].srv_;
-	//			pDevCon->PSSetShaderResources(0, 1, pInputs);
-
-	//			FullscreenPass::getInstance().renderFullscreen(bloomColorBuffer_half[0].width_, bloomColorBuffer_half[0].height_);
+			FullscreenPass::getInstance().renderFullscreen(bloomColorBuffer_half[1].width_, bloomColorBuffer_half[1].height_);
+		}
 
 
-	//			// reset now.
-	//			pInputs[0] = nullptr;
-	//			pDevCon->PSSetShaderResources(0, 1, pInputs);
+		// Perform lens flares pass at first - downsample to 1/4 x 1/4 and calculate flares
+		{
+			pDevCon->PSSetShader(lensFlaresThresholdPS, nullptr, 0);
 
-	//			pOutputs[0] = nullptr;
-	//			pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
-	//		}
+			pOutputs[0] = lensFlaresTex[1].rtv_;
+			pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
 
-	//		// Vertical pass
-	//		pDevCon->PSSetShader(bloomGaussianBlurVPS, nullptr, 0);
-	//		{
-	//			pOutputs[0] = bloomColorBuffer_half[1].rtv_;
-	//			pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
+			pInputs[0] = bloomColorBuffer_half[1].srv_;
+			pDevCon->PSSetShaderResources(0, 1, pInputs);
 
-	//			pInputs[0] = bloomColorBuffer_half[0].srv_;
-	//			pDevCon->PSSetShaderResources(0, 1, pInputs);
+			FullscreenPass::getInstance().renderFullscreen(lensFlaresTex[1].width_, lensFlaresTex[1].height_);
+		}
 
-	//			FullscreenPass::getInstance().renderFullscreen(bloomColorBuffer_half[1].width_, bloomColorBuffer_half[1].height_);
+		// Perform gaussian blur for bloom
+		for (uint32 iBlurPass = 0; iBlurPass < 4; ++iBlurPass) {
 
+			// Horizontal pass
+			pDevCon->PSSetShader(bloomGaussianBlurHPS, nullptr, 0);
+			{
+				pOutputs[0] = bloomColorBuffer_half[0].rtv_;
+				pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
 
-	//			// reset now.
-	//			pInputs[0] = nullptr;
-	//			pDevCon->PSSetShaderResources(0, 1, pInputs);
+				pInputs[0] = bloomColorBuffer_half[1].srv_;
+				pDevCon->PSSetShaderResources(0, 1, pInputs);
 
-	//			pOutputs[0] = nullptr;
-	//			pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
-	//		}
-	//	}
-	//}
-
-	//// 1) average luminance & eye adaptation
-	//if (FWindow::getInstance().isEditorWindow()) {
-	//	// do for one window
-	//	pDevCon->PSSetShader(pixelShaderLogLuminance_Full, nullptr, 0);
-	//	eyeAdaptation_[0].renderAverageLuminanceAndEyeAdaptation(hdrColorBuffer_);
-
-	//} else {
-	//	// for two players
-	//	for (uint32 iPlayer = 0; iPlayer < numPlayersViewports; ++iPlayer) {
-
-	//		pDevCon->PSSetShader(pixelShaderLogLuminance_Split[iPlayer], nullptr, 0);
-	//		eyeAdaptation_[iPlayer].renderAverageLuminanceAndEyeAdaptation(hdrColorBuffer_);
-	//	}
-	//}
-
-	//// 2) Tonemapping
-	//{
-	//	pDevCon->OMSetRenderTargets(1, &colorBufferAfterTonemapping_.rtv_, nullptr);
-	//	pDevCon->PSSetShader(pixelShaderTonemapping_, nullptr, 0);
-
-	//	for (uint32 iPlayer = 0; iPlayer < numPlayersViewports; ++iPlayer) {
-	//		ID3D11ShaderResourceView* pTonemappingInputs[4];
-	//		pTonemappingInputs[0] = hdrColorBuffer_.srv_;
-	//		pTonemappingInputs[1] = eyeAdaptation_[iPlayer].getAdaptedLuminanceTexture().srv_;
-	//		pTonemappingInputs[2] = bloomColorBuffer_half[1].srv_;
-	//		pTonemappingInputs[3] = lensFlaresTex[1].srv_;
-	//		pDevCon->PSSetShaderResources(0, 4, pTonemappingInputs);
+				FullscreenPass::getInstance().renderFullscreen(bloomColorBuffer_half[0].width_, bloomColorBuffer_half[0].height_);
 
 
-	//		//FullscreenPass::getInstance().renderFullscreen( Width, Height );
-	//		FullscreenPass::getInstance().renderFullscreen(renderViewports_[iPlayer].Width, renderViewports_[iPlayer].Height, renderViewports_[iPlayer].TopLeftX, renderViewports_[iPlayer].TopLeftY);
-	//	}
+				// reset now.
+				pInputs[0] = nullptr;
+				pDevCon->PSSetShaderResources(0, 1, pInputs);
 
-	//	ID3D11ShaderResourceView* pNullSRV[4] = { nullptr, nullptr, nullptr, nullptr };
-	//	pDevCon->PSSetShaderResources(0, 4, pNullSRV);
+				pOutputs[0] = nullptr;
+				pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
+			}
 
-	//}
+			// Vertical pass
+			pDevCon->PSSetShader(bloomGaussianBlurVPS, nullptr, 0);
+			{
+				pOutputs[0] = bloomColorBuffer_half[1].rtv_;
+				pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
 
-	//// 3) AA
-	//{
-	//	ID3D11RenderTargetView* aaOutput[1] = { hdrColorBuffer_.rtv_ };
-	//	pDevCon->OMSetRenderTargets(1, aaOutput, nullptr);
+				pInputs[0] = bloomColorBuffer_half[0].srv_;
+				pDevCon->PSSetShaderResources(0, 1, pInputs);
 
-	//	ID3D11ShaderResourceView* aaInputs[1] = { colorBufferAfterTonemapping_.srv_ };
-	//	pDevCon->PSSetShaderResources(0, 1, aaInputs);
-	//	pDevCon->PSSetShader(fxaaPS, nullptr, 0);
-
-	//	FullscreenPass::getInstance().renderFullscreen(hdrColorBuffer_.width_, hdrColorBuffer_.height_);
+				FullscreenPass::getInstance().renderFullscreen(bloomColorBuffer_half[1].width_, bloomColorBuffer_half[1].height_);
 
 
-	//	// set to null
-	//	aaInputs[0] = nullptr;
-	//	pDevCon->PSSetShaderResources(0, 1, aaInputs);
+				// reset now.
+				pInputs[0] = nullptr;
+				pDevCon->PSSetShaderResources(0, 1, pInputs);
 
-	//	aaOutput[0] = nullptr;
-	//	pDevCon->OMSetRenderTargets(1, aaOutput, nullptr);
-	//}
+				pOutputs[0] = nullptr;
+				pDevCon->OMSetRenderTargets(1, pOutputs, nullptr);
+			}
+		}
+	}
+
+	// 1) average luminance & eye adaptation
+	if (FWindow::getInstance().isEditorWindow()) {
+		// do for one window
+		pDevCon->PSSetShader(pixelShaderLogLuminance_Full, nullptr, 0);
+		eyeAdaptation_[0].renderAverageLuminanceAndEyeAdaptation(hdrColorBuffer_);
+
+	} else {
+		// for two players
+		for (uint32 iPlayer = 0; iPlayer < numPlayersViewports; ++iPlayer) {
+
+			pDevCon->PSSetShader(pixelShaderLogLuminance_Split[iPlayer], nullptr, 0);
+			eyeAdaptation_[iPlayer].renderAverageLuminanceAndEyeAdaptation(hdrColorBuffer_);
+		}
+	}
+
+	// 2) Tonemapping
+	{
+		pDevCon->OMSetRenderTargets(1, &colorBufferAfterTonemapping_.rtv_, nullptr);
+		pDevCon->PSSetShader(pixelShaderTonemapping_, nullptr, 0);
+
+		for (uint32 iPlayer = 0; iPlayer < numPlayersViewports; ++iPlayer) {
+			ID3D11ShaderResourceView* pTonemappingInputs[4];
+			pTonemappingInputs[0] = hdrColorBuffer_.srv_;
+			pTonemappingInputs[1] = eyeAdaptation_[iPlayer].getAdaptedLuminanceTexture().srv_;
+			pTonemappingInputs[2] = bloomColorBuffer_half[1].srv_;
+			pTonemappingInputs[3] = lensFlaresTex[1].srv_;
+			pDevCon->PSSetShaderResources(0, 4, pTonemappingInputs);
+
+
+			//FullscreenPass::getInstance().renderFullscreen( Width, Height );
+			FullscreenPass::getInstance().renderFullscreen(renderViewports_[iPlayer].Width, renderViewports_[iPlayer].Height, renderViewports_[iPlayer].TopLeftX, renderViewports_[iPlayer].TopLeftY);
+		}
+
+		ID3D11ShaderResourceView* pNullSRV[4] = { nullptr, nullptr, nullptr, nullptr };
+		pDevCon->PSSetShaderResources(0, 4, pNullSRV);
+
+	}
+
+	// 3) AA
+	{
+		ID3D11RenderTargetView* aaOutput[1] = { hdrColorBuffer_.rtv_ };
+		pDevCon->OMSetRenderTargets(1, aaOutput, nullptr);
+
+		ID3D11ShaderResourceView* aaInputs[1] = { colorBufferAfterTonemapping_.srv_ };
+		pDevCon->PSSetShaderResources(0, 1, aaInputs);
+		pDevCon->PSSetShader(fxaaPS, nullptr, 0);
+
+		FullscreenPass::getInstance().renderFullscreen(hdrColorBuffer_.width_, hdrColorBuffer_.height_);
+
+
+		// set to null
+		aaInputs[0] = nullptr;
+		pDevCon->PSSetShaderResources(0, 1, aaInputs);
+
+		aaOutput[0] = nullptr;
+		pDevCon->OMSetRenderTargets(1, aaOutput, nullptr);
+	}
 
 	// 4) Final postprocess pass to backbuffer, back to gamma space
 	auto backbuffer = renderer.getBackbuffer();

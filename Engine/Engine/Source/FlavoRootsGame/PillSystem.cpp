@@ -93,6 +93,8 @@ void ft_game::PillSystem::update(eecs::EntityManager& entities, double deltaTime
 		float start_x_pix = start_x * ImGui::Flavo::getInstance().windowSize.x;
 
 		float time_left = maxGameTime - currentGameTime;
+		if (time_left < 0.0f)
+			time_left = 0.0001f;
 		int left_minutes = (int)(time_left / 60.0f);
 		int left_seconds = time_left - 60.0f * (float)left_minutes;
 		int sec_digit1 = (int)(left_seconds / 10.0f);
@@ -105,7 +107,7 @@ void ft_game::PillSystem::update(eecs::EntityManager& entities, double deltaTime
 		int digits[] = { 0, left_minutes, sec_digit1, sec_digit2 };
 		for (int i = 0; i < num_digits; ++i)
 		{
-			ImGui::SetCursorPos(ImVec2(start_x_pix + (float)i * scale_x * (digit_width_x + offset_x_rel * digit_width_x), 44.0f));
+			ImGui::SetCursorPos(ImVec2(start_x_pix + (float)i * scale_x * (digit_width_x + offset_x_rel * digit_width_x), 43.0f));
 			ImGui::Image(IMAGE_DIGIT(digits[i]), image_size, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 	}

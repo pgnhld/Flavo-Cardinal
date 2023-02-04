@@ -88,15 +88,15 @@ void ft_game::PlayerShootingSystem::drawScreenSeparator() const {
 	style.WindowBorderSize = 0.0f;
 
 	framework::FResourceManager& resources = framework::FResourceManager::getInstance();
-	const ImTextureID separator = resources.getTexture("../Data/Images/Separator.dds")->getSRV();
+	const ImTextureID separator = resources.getTexture("../Data/Images/Separator.png")->getSRV();
 
 	bool bWindowOpen = true;
 	ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
 	ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
 	ImGui::SetNextWindowBgAlpha(0.0f);
 	ImGui::Begin("Separator window", &bWindowOpen, INVISIBLE());
-	ImGui::SetCursorPos(REL(0.5f - relativeScreenSeparatorWidth, 0.0f));
-	ImGui::Image(separator, REL(relativeScreenSeparatorWidth * 2.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+	ImGui::SetCursorPos(ImVec2(RELX(0.5f) - 2.5f, 0.0f));
+	ImGui::Image(separator, ImVec2(5.0f, 1080.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 	ImGui::End();
 }
 
@@ -148,14 +148,14 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 		1 << static_cast<uint8>(ft_engine::ELayer::Paintable)
 		| 1 << static_cast<uint8>(ft_engine::ELayer::Pickable)
 		| 1 << static_cast<uint8>(ft_engine::ELayer::Raft);
-	layer |= 1 << static_cast<uint8>((event.bLocalPlayer) ? ft_engine::ELayer::PlayerAdditional_2 : ft_engine::ELayer::PlayerAdditional_1);
+	layer |= 1 << static_cast<uint8>(ft_engine::ELayer::Player);
 
 	EventPhysicsRaycast* eventPtr = new EventPhysicsRaycast(ray, layer);
 	invokeNonConst<EventPhysicsRaycast>(eventPtr);
 	if (eventPtr->bHit) {
 		Entity hit = eventPtr->hitEntity;
 		ft_engine::Collider* hitCollider = hit.getComponent<ft_engine::Collider>().get();
-		if (hitCollider->layer == ((event.bLocalPlayer) ? ft_engine::ELayer::PlayerAdditional_2 : ft_engine::ELayer::PlayerAdditional_1)) {
+		if (hitCollider->layer == ft_engine::ELayer::Player) {
 			handleAnotherPlayerHit(!event.bLocalPlayer, gun);
 		} else {
 			//handlePaintableHit(eventPtr->hitEntity, gun);
