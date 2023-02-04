@@ -163,6 +163,11 @@ bool ft_engine::CollisionBox::checkTriggerColliderIntersection(const TriggerColl
 	return true;
 }
 
+Vector3 ft_engine::CollisionBox::getHalfSize() const {
+	return halfSize;
+}
+
+
 void ft_engine::to_json(nlohmann::json& json, const CollisionBox& obj) {
 	json = nlohmann::json{
 		{ "halfSize", obj.halfSize }

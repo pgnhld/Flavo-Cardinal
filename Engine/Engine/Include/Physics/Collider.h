@@ -32,6 +32,7 @@ namespace ft_engine
 		virtual uint8_t getPrimitive() const = 0;
 		virtual bool checkRayIntersection(const Raycast& raycast, const Matrix& boxTransform, float& intersection) const = 0;
 		virtual bool checkTriggerColliderIntersection(const TriggerCollider& triggerCollider, const Matrix& colliderTransform, const Matrix& triggerTransform) const = 0;
+		virtual Vector3 getHalfSize() const = 0;
 	};
 
 	void to_json(nlohmann::json& json, const CollisionPrimitive& obj);
@@ -44,6 +45,7 @@ namespace ft_engine
 		uint8_t getPrimitive() const override;
 		bool checkRayIntersection(const Raycast& raycast, const Matrix& boxTransform, float& intersection) const override;
 		bool checkTriggerColliderIntersection(const TriggerCollider& triggerCollider, const Matrix& colliderTransform, const Matrix& triggerTransform) const override;
+		Vector3 getHalfSize() const override;
 	};
 
 	void to_json(nlohmann::json& json, const CollisionBox& obj);

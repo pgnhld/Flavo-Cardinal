@@ -7,18 +7,66 @@
 #include "Logger.h"
 #include "Physics/FixedJoint.h"
 
+#include "btBulletDynamicsCommon.h"
+
+
+
+struct PhysicsBulletEntityCollision
+{
+	std::unique_ptr<btCollisionShape> shape;
+	std::unique_ptr<btCollisionObject> object;
+	uint64 entityId;
+};
+
+struct PhysicsBulletData
+{
+	std::vector<PhysicsBulletEntityCollision> collisionShapes;
+
+	btDefaultCollisionConfiguration collisionConfiguration;
+	std::unique_ptr<btCollisionDispatcher> dispatcher;
+	std::unique_ptr<btBroadphaseInterface> broadphase;
+	std::unique_ptr<btConstraintSolver> solver;
+	std::unique_ptr<btDiscreteDynamicsWorld> dynamicsWorld;
+
+	double lastElapsedSeconds;
+};
+
+
 using framework::FTime;
 
 ft_engine::ResolveConstraintsSystem::ResolveConstraintsSystem() {
 	subscribe<EventComponentAdded>(this, &ResolveConstraintsSystem::onComponentAdded);
 	subscribeNonConst<EventPhysicsRaycast>(this, &ResolveConstraintsSystem::onRaycastQuery);
 	subscribeNonConst<EventPhysicsTriggerCollider>(this, &ResolveConstraintsSystem::onTriggerColliderQuery);
+
+
+	physicsBulletData				 = std::make_unique<PhysicsBulletData>();
+	physicsBulletData->dispatcher	 = std::make_unique<btCollisionDispatcher>(&physicsBulletData->collisionConfiguration);
+	physicsBulletData->broadphase	 = std::make_unique<btDbvtBroadphase>();
+	physicsBulletData->solver		 = std::make_unique<btSequentialImpulseConstraintSolver>();
+	physicsBulletData->dynamicsWorld = std::make_unique<btDiscreteDynamicsWorld>
+		(  
+			physicsBulletData->dispatcher.get(),
+			physicsBulletData->broadphase.get(),
+			physicsBulletData->solver.get(),
+			&physicsBulletData->collisionConfiguration
+		);
+
+	physicsBulletData->collisionShapes.reserve(1024);
 }
 
 ft_engine::ResolveConstraintsSystem::~ResolveConstraintsSystem() {
 	unsubscribe<EventComponentAdded>();
 	unsubscribeNonConst<EventPhysicsRaycast>();
 	unsubscribeNonConst<EventPhysicsTriggerCollider>();
+
+	for (auto& entityCollision : physicsBulletData->collisionShapes)
+	{
+		if (auto* collisionObject = entityCollision.object.get())
+		{
+			physicsBulletData->dynamicsWorld->removeCollisionObject(collisionObject);
+		}
+	}
 }
 
 void ft_engine::ResolveConstraintsSystem::fixedUpdate(eecs::EntityManager& entities, double deltaTime) {
@@ -27,6 +75,46 @@ void ft_engine::ResolveConstraintsSystem::fixedUpdate(eecs::EntityManager& entit
 		for (auto it = unhashedEntities.begin(); it != unhashedEntities.end(); ++it) {
 			if (it->isValid()) {
 				spatialHashmap.tryAddEntity(*it);
+
+				const uint64 entityId = it->getId().index_;
+				Entity entity = entities.get(entityId);
+
+				if (entity.hasComponent<Transform>())
+				{
+					auto foundBulletData = std::find_if(physicsBulletData->collisionShapes.begin(), physicsBulletData->collisionShapes.end(), [entityId](const auto& data) { return data.entityId == entityId; });
+					if (foundBulletData == std::end(physicsBulletData->collisionShapes))
+					{
+						auto transformComponent = entity.getComponent<Transform>().get();
+						const Matrix transform = transformComponent->getWorldTransform();
+						auto colliderComponent = entity.getComponent<Collider>().get();
+						const Vector3 halfSize = colliderComponent->collisionPrimitive->getHalfSize();
+						Vector3 position;
+						Quaternion quat;
+						Vector3 scale;
+						transform.Decompose(scale, quat, position);
+						const btVector3 scaledSize = btVector3(btScalar(halfSize.x * scale.x), btScalar(halfSize.y * scale.y), btScalar(halfSize.z * scale.z));
+
+						PhysicsBulletEntityCollision collisionData;
+						collisionData.entityId = entityId;
+						collisionData.shape = std::make_unique<btBoxShape>(scaledSize);
+						collisionData.object = std::make_unique<btCollisionObject>();
+						collisionData.object->setCollisionShape(collisionData.shape.get());
+						btTransform bulletTransform = btTransform(btQuaternion(quat.x, quat.y, quat.z, quat.w), btVector3(position.x, position.y, position.z));
+						collisionData.object->setWorldTransform(bulletTransform);
+						collisionData.object->setUserIndex(entityId);
+
+						const bool isDynamic = entity.hasComponent<Rigidbody>() || entity.hasComponent<CharacterController>();
+						if (isDynamic) {
+							collisionData.object->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+						}
+						else {
+							collisionData.object->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+						}
+
+						physicsBulletData->dynamicsWorld->addCollisionObject(collisionData.object.get());
+						physicsBulletData->collisionShapes.emplace_back(std::move(collisionData));
+					}
+				}
 			}
 		}
 		unhashedEntities.clear();
@@ -64,33 +152,90 @@ void ft_engine::ResolveConstraintsSystem::fixedUpdate(eecs::EntityManager& entit
 
 		CharacterController* controller = currCharacterControllerEntity.getComponent<CharacterController>().get();
 		controller->timeSinceLastGroundTouch = (controller->bOnGround) ? 0.0f : controller->timeSinceLastGroundTouch + deltaTime;
-	}
-}
 
-void ft_engine::ResolveConstraintsSystem::onRaycastQuery(EventPhysicsRaycast& eventData) {
-	eventData.bHit = false;
-	float minDistance = FLT_MAX;
-	std::set<eecs::Entity> potentialColliders = spatialHashmap.queryEntities(eventData.raycast);
+		if (currCharacterControllerEntity.hasComponent<Transform>()) {
+			const uint64 entityId = currCharacterControllerEntity.getId().index_;
+			auto foundBulletData = std::find_if(physicsBulletData->collisionShapes.begin(), physicsBulletData->collisionShapes.end(), [entityId](const auto& data) { return data.entityId == entityId; });
+			if (foundBulletData != std::end(physicsBulletData->collisionShapes)) {
 
-	for (auto it = potentialColliders.begin(); it != potentialColliders.end(); ++it) {
-		eecs::Entity currEntity = *it;
-		Transform* currTransform = currEntity.getComponent<Transform>().get();
-		Collider* currCollider = currEntity.getComponent<Collider>().get();
-
-		if ((1 << static_cast<uint8_t>(currCollider->layer) & eventData.collisionLayer) == 0) {
-			continue;
-		}
-
-		float currDistance;
-		if (currCollider->collisionPrimitive->checkRayIntersection(eventData.raycast, currCollider->offset * currTransform->getWorldTransform(), currDistance)) {
-			if (currDistance < minDistance) {
-				minDistance = currDistance;
-				eventData.hitEntity = currEntity;
-				eventData.bHit = true;
-				eventData.distance = minDistance;
+				auto transformComponent = currCharacterControllerEntity.getComponent<Transform>().get();
+				const Matrix transform = transformComponent->getWorldTransform();
+				Vector3 position;
+				Quaternion quat;
+				Vector3 scale;
+				transform.Decompose(scale, quat, position);
+				btTransform bulletTransform = btTransform(btQuaternion(quat.x, quat.y, quat.z, quat.w), btVector3(position.x, position.y, position.z));
+				foundBulletData->object->setWorldTransform(bulletTransform);
 			}
 		}
 	}
+
+	// Update bullet transforms
+	auto bulletTransformUpdate = [this](Entity entity) {
+		const uint64 entityId = entity.getId().index_;
+		auto foundBulletData = std::find_if(physicsBulletData->collisionShapes.begin(), physicsBulletData->collisionShapes.end(), [entityId](const auto& data) { return data.entityId == entityId; });
+		if (foundBulletData != std::end(physicsBulletData->collisionShapes)) {
+
+			foundBulletData->object->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+			auto transformComponent = entity.getComponent<Transform>().get();
+			const Matrix transform = transformComponent->getWorldTransform();
+			Vector3 position;
+			Quaternion quat;
+			Vector3 scale;
+			transform.Decompose(scale, quat, position);
+			btTransform bulletTransform = btTransform(btQuaternion(quat.x, quat.y, quat.z, quat.w), btVector3(position.x, position.y, position.z));
+			foundBulletData->object->setWorldTransform(bulletTransform);
+		}
+	};
+	for (const int controllerIndex : characterControllers) {
+		Entity charController = colliders[controllerIndex];
+		bulletTransformUpdate(charController);
+	}
+	for (const int rigidbodyIndex : rigidbodies) {
+		Entity rigidbody = colliders[rigidbodyIndex];
+		bulletTransformUpdate(rigidbody);
+	}
+
+	physicsBulletData->dynamicsWorld->stepSimulation(deltaTime);
+}
+
+void ft_engine::ResolveConstraintsSystem::onRaycastQuery(EventPhysicsRaycast& eventData) {
+	const Vector3& origin = eventData.raycast.origin;
+	const Vector3& direction = eventData.raycast.direction;
+	const float length = eventData.raycast.maxLength;
+	const btVector3 start = btVector3(origin.x, origin.y, origin.z);
+	const btVector3 end = btVector3(origin.x + direction.x * length, origin.y + direction.y * length, origin.z + direction.z * length);
+	btCollisionWorld::ClosestRayResultCallback result(start, end);
+	physicsBulletData->dynamicsWorld->getCollisionWorld()->rayTest(start, end, result);
+
+	eventData.bHit = result.hasHit();
+	if (eventData.bHit) {
+		eventData.distance = (result.m_hitPointWorld - start).length();
+		eventData.hitEntity = ft_engine::SceneManager::getInstance().getScene().getEntityManager().get(result.m_collisionObject->getUserIndex());
+	}
+
+	//float minDistance = FLT_MAX;
+	//std::set<eecs::Entity> potentialColliders = spatialHashmap.queryEntities(eventData.raycast);
+
+	//for (auto it = potentialColliders.begin(); it != potentialColliders.end(); ++it) {
+	//	eecs::Entity currEntity = *it;
+	//	Transform* currTransform = currEntity.getComponent<Transform>().get();
+	//	Collider* currCollider = currEntity.getComponent<Collider>().get();
+
+	//	if ((1 << static_cast<uint8_t>(currCollider->layer) & eventData.collisionLayer) == 0) {
+	//		continue;
+	//	}
+
+	//	float currDistance;
+	//	if (currCollider->collisionPrimitive->checkRayIntersection(eventData.raycast, currCollider->offset * currTransform->getWorldTransform(), currDistance)) {
+	//		if (currDistance < minDistance) {
+	//			minDistance = currDistance;
+	//			eventData.hitEntity = currEntity;
+	//			eventData.bHit = true;
+	//			eventData.distance = minDistance;
+	//		}
+	//	}
+	//}
 }
 
 void ft_engine::ResolveConstraintsSystem::onTriggerColliderQuery(EventPhysicsTriggerCollider& eventData) {

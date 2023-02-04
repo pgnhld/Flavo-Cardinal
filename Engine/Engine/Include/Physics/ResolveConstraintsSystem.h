@@ -8,6 +8,8 @@
 #include "Collision.h"
 #include "EECS.h"
 
+struct PhysicsBulletData;
+
 FLAVO_SYSTEM(ft_engine, ResolveConstraintsSystem)
 namespace ft_engine
 {
@@ -34,5 +36,7 @@ namespace ft_engine
 		SpatialHashmap spatialHashmap;
 		std::set<eecs::Entity> unhashedEntities;
 		std::map<std::pair<eecs::Entity, eecs::Entity>, int8_t> pastImmobileEntityMobileEntityCollisions;
+
+		std::unique_ptr<PhysicsBulletData> physicsBulletData;
 	};
 }
