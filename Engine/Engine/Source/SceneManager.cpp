@@ -43,7 +43,7 @@ bool ft_engine::SceneManager::load(uint32 sceneIndex) {
 	if (ASSERT_FAIL(it != config_->sceneIndexToPath.end(), "There is no such scene index in BuildSettings"))
 		return false;
 
-	bNeedAcceptOnNextSceneLoad_ = true;// sceneIndex != 0; //main menu loading does not need user input to end
+	bNeedAcceptOnNextSceneLoad_ = true; // sceneIndex != 0; //main menu loading does not need user input to end
 	nextSceneToLoad_ = it->second;
 	currentlyLoadedIndex_ = sceneIndex;
 	return true;
@@ -54,7 +54,7 @@ void ft_engine::SceneManager::load(const std::string& scenePath) {
 	for (auto& it : config_->sceneIndexToPath) {
 		if (it.second == scenePath) {
 			currentlyLoadedIndex_ = it.first;
-			bNeedAcceptOnNextSceneLoad_ = true;// currentlyLoadedIndex_ != 0;
+			bNeedAcceptOnNextSceneLoad_ = true; // currentlyLoadedIndex_ != 0;
 			break;
 		}
 	}

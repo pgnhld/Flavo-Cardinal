@@ -3,11 +3,11 @@
 #include <filesystem>
 
 void HeaderTool::generate() {
-	const std::string headerPath = std::string("../../../Engine/Include/Serializer.h");
-	const std::string sourcePath = std::string("../../../Engine/Source/Serializer.cpp");
+	const std::string headerPath = std::string("../Engine/Include/Serializer.h");
+	const std::string sourcePath = std::string("../Engine/Source/Serializer.cpp");
 	LOG_I("Generating...", std::experimental::filesystem::canonical(std::experimental::filesystem::absolute(headerPath)).string());
 	const std::string* paths = new std::string[1]{
-		"../../../Engine/Include",
+		"../Engine/Include",
 	};
 
 	std::stringstream headerEnum;

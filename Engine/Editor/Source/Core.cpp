@@ -19,6 +19,7 @@
 #include "Physics/TransformSystem.h"
 #include "CoroutineManager.h"
 #include "FResourceManager.h"
+#include "FlavoRootsGame/Player.h"
 
 ft_editor::Core::Core(HINSTANCE hInstance, int nCmdShow) :
 bToExit_(false), lastLoopTime_(std::chrono::high_resolution_clock::now()), fixedUpdateTimer_(0.0) {
@@ -124,5 +125,6 @@ void ft_editor::Core::onPostSceneLoaded(const EventPostSceneLoaded& event) {
 	eecs::ComponentHandle<ft_engine::Metadata> metadata = cameraEntity.addComponent<ft_engine::Metadata>();
 	metadata->name = "### EditorCamera";
 	cameraEntity.addComponent<ft_render::Camera>();
+	cameraEntity.addComponent<ft_engine::Player>();
 }
 

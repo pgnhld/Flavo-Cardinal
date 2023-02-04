@@ -9,11 +9,12 @@
 #SYS ft_engine::RigidbodySystem 0
 #SYS ft_engine::ResolveConstraintsSystem 0
 #SYS ft_engine::TransformSystem 0
+#SYS ft_game::BackgroundAudioSystem 0
 
 
 #ENT 2 0
 #COMP ft_engine::Metadata {"name":"MainCamera"}
-#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":9.0,"y":9.0,"z":0.0},"rotation":{"x":44.999996185302734,"y":269.9999694824219,"z":0.0},"scale":{"x":1.0,"y":0.9999990463256836,"z":0.9999992251396179}}}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":9.0,"y":9.0,"z":0.0},"rotation":{"x":44.99998092651367,"y":270.0,"z":0.0},"scale":{"x":1.0000001192092896,"y":0.9999991059303284,"z":0.9999993443489075}}}
 #COMP ft_render::Camera {"aspectRatio":0.8888800144195557,"farPlane":200.0,"fovDegrees":70.0,"nearPlane":0.02500000037252903}
 
 #ENT 7 0
@@ -35,8 +36,8 @@
   #ENT 4 7
   #COMP ft_engine::Metadata {"name":"Floor"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.3999998569488525,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":5.0,"y":1.0,"z":5.0}}}
-  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.3999998569488525,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":25.0,"y":1.0,"z":25.0}}}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.15000000596046448,"green":0.15000000596046448,"red":0.30000001192092896},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
 
   #ENT 8 7
   #COMP ft_engine::Metadata {"name":"Falling Cube"}
@@ -56,6 +57,24 @@
 #ENT 1 0
 #COMP ft_engine::Metadata {"name":"Directional Light"}
 #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":44.99992370605469,"y":45.0,"z":360.0},"scale":{"x":0.9999982118606567,"y":0.9999999403953552,"z":0.9999992847442627}}}
-#COMP ft_render::DirectionalLight {"baseLight":{"color":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"intensity":1.0}}
+#COMP ft_render::DirectionalLight {"baseLight":{"color":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"intensity":2.0}}
+
+#ENT 10 0
+#COMP ft_engine::Metadata {"name":"__Players"}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #ENT 11 10
+  #COMP ft_engine::Player {"bLocal":true}
+  #COMP ft_engine::Metadata {"name":"OldPapa"}
+  #COMP ft_engine::CharacterController {"backwardSpeed":0.5,"forwardSpeed":1.0,"horizontalSpeed":1.0,"jumpCooldownInAir":15.0,"jumpSpeed":1.0,"sidesSpeed":1.0,"verticalSpeed":1.0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":5.0,"y":2.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_render::SkinnedMeshRenderer {"#meshPath":"..\\Data\\Models\\Characters\\OldPapa.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Character\\OldPapa_Diffuse.png","#metallic":"..\\Data\\Textures\\Character\\OldPapa_Metallic.png","#normal":"..\\Data\\Textures\\Character\\OldPapa_Normal.png","#roughness":"..\\Data\\Textures\\Character\\OldPapa_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":2}
+
+  #ENT 12 10
+  #COMP ft_engine::Player {"bLocal":false}
+  #COMP ft_engine::Metadata {"name":"YoungMagick"}
+  #COMP ft_engine::CharacterController {"backwardSpeed":1.0,"forwardSpeed":2.0,"horizontalSpeed":2.0,"jumpCooldownInAir":15.0,"jumpSpeed":2.0,"sidesSpeed":2.0,"verticalSpeed":2.0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":8.0,"y":2.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_render::SkinnedMeshRenderer {"#meshPath":"..\\Data\\Models\\Characters\\YoungMagick.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Character\\OldPapa_Diffuse.png","#metallic":"..\\Data\\Textures\\Character\\OldPapa_Metallic.png","#normal":"..\\Data\\Textures\\Character\\OldPapa_Normal.png","#roughness":"..\\Data\\Textures\\Character\\OldPapa_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":2}
+
 
 

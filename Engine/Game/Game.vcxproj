@@ -99,8 +99,8 @@
       <AdditionalDependencies>ImGUI.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>xcopy "$(SolutionDir)Data" "$(OutDir)..\Data\" /D /s /y /r
-xcopy "$(SolutionDir)Config" "$(OutDir)..\Config\" /D /s /y /r</Command>
+      <Command>xcopy "$(SolutionDir)Data" "$(OutDir)..\Data\" /s /y /r
+xcopy "$(SolutionDir)Config" "$(OutDir)..\Config\" /s /y /r</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>non_existing.txt</Outputs>

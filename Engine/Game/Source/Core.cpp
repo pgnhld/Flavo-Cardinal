@@ -41,7 +41,7 @@ ft_game::Core::Core(HINSTANCE hInstance, int nCmdShow) :
 	if (commandLine.substr(0, 1) == "#") {
 		ft_engine::SceneManager::getInstance().load(commandLine.substr(1));
 	} else {
-		ft_engine::SceneManager::getInstance().load("../Data/Scene/DemoScene.fscene");
+		ft_engine::SceneManager::getInstance().load("../Data/Scene/MainMenu.fscene");
 	}
 
 	ImGui_ImplDX11_NewFrame();

@@ -106,7 +106,7 @@ framework::FAudio::FAudio()
 	ambientAudioEngine_->SetMasterVolume(0.5f);
 	backgroundMusicPaths_.emplace(BackgroundMusicType::DECHOST, L"../Data/Sounds/dechost.wav");
 	backgroundMusicPaths_.emplace(BackgroundMusicType::PAPA_2138, L"../Data/Sounds/papa2138.wav");
-	backgroundMusicPaths_.emplace(BackgroundMusicType::BACKGROUND, L"../Data/Sounds/flavo_babilon_background.wav");
+	backgroundMusicPaths_.emplace(BackgroundMusicType::BACKGROUND, L"../Data/Sounds/flavo_cardinal_background.wav");
 	backgroundMusicPaths_.emplace(BackgroundMusicType::BOSS_FIGHT, L"../Data/Sounds/flavo_cyborg_boss_fight.wav");
 
 	audioClip2DPaths_.emplace(AudioClip2DType::ZAHID_LAUGH, L"../Data/Sounds/zahid_stutter.wav");

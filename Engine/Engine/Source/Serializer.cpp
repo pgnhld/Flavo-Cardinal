@@ -1,3 +1,13 @@
+#include "Audio\BackgroundAudioSystem.h"
+#include "FlavoRootsGame\LineRenderer.h"
+#include "FlavoRootsGame\MainMenuSystem.h"
+#include "FlavoRootsGame\Player.h"
+#include "FlavoRootsGame\PlayerInputSystem.h"
+#include "FlavoRootsGame\PlayerMovementSystem.h"
+#include "FlavoRootsGame\PlayerShootingSystem.h"
+#include "FlavoRootsGame\SceneSpecificData.h"
+#include "FlavoRootsGame\Water.h"
+#include "FlavoRootsGame\WaterSystem.h"
 #include "Metadata.h"
 #include "Physics\CharacterController.h"
 #include "Physics\Collider.h"
@@ -19,62 +29,84 @@
 #include "Serializer.h"
 
 reflection::Serializer::Serializer() {
+	systemCreationMap_.insert({ "ft_game::BackgroundAudioSystem", &createObjectOfType<ft_game::BackgroundAudioSystem> });
+	componentCreationMap_.insert({ "ft_game::LineRenderer", &createComponentOfType<ft_game::LineRenderer> });
+	ft_game::LineRenderer::type = 0;
+	componentTypeMap_.insert({ "ft_game::LineRenderer", 0 });
+	typeComponentMap_.insert({ 0, "ft_game::LineRenderer" });
+	systemCreationMap_.insert({ "ft_game::MainMenuSystem", &createObjectOfType<ft_game::MainMenuSystem> });
+	componentCreationMap_.insert({ "ft_engine::Player", &createComponentOfType<ft_engine::Player> });
+	ft_engine::Player::type = 1;
+	componentTypeMap_.insert({ "ft_engine::Player", 1 });
+	typeComponentMap_.insert({ 1, "ft_engine::Player" });
+	systemCreationMap_.insert({ "ft_engine::PlayerInputSystem", &createObjectOfType<ft_engine::PlayerInputSystem> });
+	systemCreationMap_.insert({ "ft_game::PlayerMovementSystem", &createObjectOfType<ft_game::PlayerMovementSystem> });
+	systemCreationMap_.insert({ "ft_game::PlayerShootingSystem", &createObjectOfType<ft_game::PlayerShootingSystem> });
+	componentCreationMap_.insert({ "ft_game::SceneSpecificData", &createComponentOfType<ft_game::SceneSpecificData> });
+	ft_game::SceneSpecificData::type = 2;
+	componentTypeMap_.insert({ "ft_game::SceneSpecificData", 2 });
+	typeComponentMap_.insert({ 2, "ft_game::SceneSpecificData" });
+	componentCreationMap_.insert({ "ft_game::Water", &createComponentOfType<ft_game::Water> });
+	ft_game::Water::type = 3;
+	componentTypeMap_.insert({ "ft_game::Water", 3 });
+	typeComponentMap_.insert({ 3, "ft_game::Water" });
+	systemCreationMap_.insert({ "ft_game::WaterSystem", &createObjectOfType<ft_game::WaterSystem> });
 	componentCreationMap_.insert({ "ft_engine::Metadata", &createComponentOfType<ft_engine::Metadata> });
-	ft_engine::Metadata::type = 0;
-	componentTypeMap_.insert({ "ft_engine::Metadata", 0 });
-	typeComponentMap_.insert({ 0, "ft_engine::Metadata" });
+	ft_engine::Metadata::type = 4;
+	componentTypeMap_.insert({ "ft_engine::Metadata", 4 });
+	typeComponentMap_.insert({ 4, "ft_engine::Metadata" });
 	componentCreationMap_.insert({ "ft_engine::CharacterController", &createComponentOfType<ft_engine::CharacterController> });
-	ft_engine::CharacterController::type = 1;
-	componentTypeMap_.insert({ "ft_engine::CharacterController", 1 });
-	typeComponentMap_.insert({ 1, "ft_engine::CharacterController" });
+	ft_engine::CharacterController::type = 5;
+	componentTypeMap_.insert({ "ft_engine::CharacterController", 5 });
+	typeComponentMap_.insert({ 5, "ft_engine::CharacterController" });
 	componentCreationMap_.insert({ "ft_engine::Collider", &createComponentOfType<ft_engine::Collider> });
-	ft_engine::Collider::type = 2;
-	componentTypeMap_.insert({ "ft_engine::Collider", 2 });
-	typeComponentMap_.insert({ 2, "ft_engine::Collider" });
+	ft_engine::Collider::type = 6;
+	componentTypeMap_.insert({ "ft_engine::Collider", 6 });
+	typeComponentMap_.insert({ 6, "ft_engine::Collider" });
 	componentCreationMap_.insert({ "ft_engine::FixedJoint", &createComponentOfType<ft_engine::FixedJoint> });
-	ft_engine::FixedJoint::type = 3;
-	componentTypeMap_.insert({ "ft_engine::FixedJoint", 3 });
-	typeComponentMap_.insert({ 3, "ft_engine::FixedJoint" });
+	ft_engine::FixedJoint::type = 7;
+	componentTypeMap_.insert({ "ft_engine::FixedJoint", 7 });
+	typeComponentMap_.insert({ 7, "ft_engine::FixedJoint" });
 	systemCreationMap_.insert({ "ft_engine::ResolveConstraintsSystem", &createObjectOfType<ft_engine::ResolveConstraintsSystem> });
 	componentCreationMap_.insert({ "ft_engine::Rigidbody", &createComponentOfType<ft_engine::Rigidbody> });
-	ft_engine::Rigidbody::type = 4;
-	componentTypeMap_.insert({ "ft_engine::Rigidbody", 4 });
-	typeComponentMap_.insert({ 4, "ft_engine::Rigidbody" });
+	ft_engine::Rigidbody::type = 8;
+	componentTypeMap_.insert({ "ft_engine::Rigidbody", 8 });
+	typeComponentMap_.insert({ 8, "ft_engine::Rigidbody" });
 	systemCreationMap_.insert({ "ft_engine::RigidbodySystem", &createObjectOfType<ft_engine::RigidbodySystem> });
 	componentCreationMap_.insert({ "ft_engine::Transform", &createComponentOfType<ft_engine::Transform> });
-	ft_engine::Transform::type = 5;
-	componentTypeMap_.insert({ "ft_engine::Transform", 5 });
-	typeComponentMap_.insert({ 5, "ft_engine::Transform" });
+	ft_engine::Transform::type = 9;
+	componentTypeMap_.insert({ "ft_engine::Transform", 9 });
+	typeComponentMap_.insert({ 9, "ft_engine::Transform" });
 	systemCreationMap_.insert({ "ft_engine::TransformSystem", &createObjectOfType<ft_engine::TransformSystem> });
 	componentCreationMap_.insert({ "ft_engine::TriggerCollider", &createComponentOfType<ft_engine::TriggerCollider> });
-	ft_engine::TriggerCollider::type = 6;
-	componentTypeMap_.insert({ "ft_engine::TriggerCollider", 6 });
-	typeComponentMap_.insert({ 6, "ft_engine::TriggerCollider" });
+	ft_engine::TriggerCollider::type = 10;
+	componentTypeMap_.insert({ "ft_engine::TriggerCollider", 10 });
+	typeComponentMap_.insert({ 10, "ft_engine::TriggerCollider" });
 	componentCreationMap_.insert({ "ft_render::Camera", &createComponentOfType<ft_render::Camera> });
-	ft_render::Camera::type = 7;
-	componentTypeMap_.insert({ "ft_render::Camera", 7 });
-	typeComponentMap_.insert({ 7, "ft_render::Camera" });
+	ft_render::Camera::type = 11;
+	componentTypeMap_.insert({ "ft_render::Camera", 11 });
+	typeComponentMap_.insert({ 11, "ft_render::Camera" });
 	componentCreationMap_.insert({ "ft_render::CylinderLight", &createComponentOfType<ft_render::CylinderLight> });
-	ft_render::CylinderLight::type = 8;
-	componentTypeMap_.insert({ "ft_render::CylinderLight", 8 });
-	typeComponentMap_.insert({ 8, "ft_render::CylinderLight" });
+	ft_render::CylinderLight::type = 12;
+	componentTypeMap_.insert({ "ft_render::CylinderLight", 12 });
+	typeComponentMap_.insert({ 12, "ft_render::CylinderLight" });
 	componentCreationMap_.insert({ "ft_render::DirectionalLight", &createComponentOfType<ft_render::DirectionalLight> });
-	ft_render::DirectionalLight::type = 9;
-	componentTypeMap_.insert({ "ft_render::DirectionalLight", 9 });
-	typeComponentMap_.insert({ 9, "ft_render::DirectionalLight" });
+	ft_render::DirectionalLight::type = 13;
+	componentTypeMap_.insert({ "ft_render::DirectionalLight", 13 });
+	typeComponentMap_.insert({ 13, "ft_render::DirectionalLight" });
 	componentCreationMap_.insert({ "ft_render::PointLight", &createComponentOfType<ft_render::PointLight> });
-	ft_render::PointLight::type = 10;
-	componentTypeMap_.insert({ "ft_render::PointLight", 10 });
-	typeComponentMap_.insert({ 10, "ft_render::PointLight" });
+	ft_render::PointLight::type = 14;
+	componentTypeMap_.insert({ "ft_render::PointLight", 14 });
+	typeComponentMap_.insert({ 14, "ft_render::PointLight" });
 	systemCreationMap_.insert({ "ft_render::RenderSystem", &createObjectOfType<ft_render::RenderSystem> });
 	componentCreationMap_.insert({ "ft_render::SkinnedMeshRenderer", &createComponentOfType<ft_render::SkinnedMeshRenderer> });
-	ft_render::SkinnedMeshRenderer::type = 11;
-	componentTypeMap_.insert({ "ft_render::SkinnedMeshRenderer", 11 });
-	typeComponentMap_.insert({ 11, "ft_render::SkinnedMeshRenderer" });
+	ft_render::SkinnedMeshRenderer::type = 15;
+	componentTypeMap_.insert({ "ft_render::SkinnedMeshRenderer", 15 });
+	typeComponentMap_.insert({ 15, "ft_render::SkinnedMeshRenderer" });
 	componentCreationMap_.insert({ "ft_render::StaticMeshRenderer", &createComponentOfType<ft_render::StaticMeshRenderer> });
-	ft_render::StaticMeshRenderer::type = 12;
-	componentTypeMap_.insert({ "ft_render::StaticMeshRenderer", 12 });
-	typeComponentMap_.insert({ 12, "ft_render::StaticMeshRenderer" });
+	ft_render::StaticMeshRenderer::type = 16;
+	componentTypeMap_.insert({ "ft_render::StaticMeshRenderer", 16 });
+	typeComponentMap_.insert({ 16, "ft_render::StaticMeshRenderer" });
 } //Serializer()
 
 reflection::Serializer::~Serializer() { }
@@ -96,6 +128,10 @@ const std::unordered_map<uint32, std::string>& reflection::Serializer::getTypeCo
 }
 
 void reflection::Serializer::initRootComponent(eecs::Entity entity) const {
+	entity.addComponent<ft_game::LineRenderer>();
+	entity.addComponent<ft_engine::Player>();
+	entity.addComponent<ft_game::SceneSpecificData>();
+	entity.addComponent<ft_game::Water>();
 	entity.addComponent<ft_engine::Metadata>();
 	entity.addComponent<ft_engine::CharacterController>();
 	entity.addComponent<ft_engine::Collider>();
@@ -111,6 +147,16 @@ void reflection::Serializer::initRootComponent(eecs::Entity entity) const {
 	entity.addComponent<ft_render::StaticMeshRenderer>();
 }
 
+template<> eecs::SystemBase* createObjectOfType<ft_game::BackgroundAudioSystem>() { return new ft_game::BackgroundAudioSystem(); }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::LineRenderer>() { return new ft_game::LineRenderer(); }
+template<> eecs::SystemBase* createObjectOfType<ft_game::MainMenuSystem>() { return new ft_game::MainMenuSystem(); }
+template<> eecs::ComponentBase* createComponentOfType<ft_engine::Player>() { return new ft_engine::Player(); }
+template<> eecs::SystemBase* createObjectOfType<ft_engine::PlayerInputSystem>() { return new ft_engine::PlayerInputSystem(); }
+template<> eecs::SystemBase* createObjectOfType<ft_game::PlayerMovementSystem>() { return new ft_game::PlayerMovementSystem(); }
+template<> eecs::SystemBase* createObjectOfType<ft_game::PlayerShootingSystem>() { return new ft_game::PlayerShootingSystem(); }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::SceneSpecificData>() { return new ft_game::SceneSpecificData(); }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::Water>() { return new ft_game::Water(); }
+template<> eecs::SystemBase* createObjectOfType<ft_game::WaterSystem>() { return new ft_game::WaterSystem(); }
 template<> eecs::ComponentBase* createComponentOfType<ft_engine::Metadata>() { return new ft_engine::Metadata(); }
 template<> eecs::ComponentBase* createComponentOfType<ft_engine::CharacterController>() { return new ft_engine::CharacterController(); }
 template<> eecs::ComponentBase* createComponentOfType<ft_engine::Collider>() { return new ft_engine::Collider(); }

@@ -12,6 +12,36 @@ eecs::SystemBase* createObjectOfType() { return new T(); }
 template<typename T> //primary component template
 eecs::ComponentBase* createComponentOfType() { return new T(); }
 
+namespace ft_game { class BackgroundAudioSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::BackgroundAudioSystem>();
+
+namespace ft_game { class LineRenderer; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::LineRenderer>();
+
+namespace ft_game { class MainMenuSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::MainMenuSystem>();
+
+namespace ft_engine { class Player; }
+template<> eecs::ComponentBase* createComponentOfType<ft_engine::Player>();
+
+namespace ft_engine { class PlayerInputSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_engine::PlayerInputSystem>();
+
+namespace ft_game { class PlayerMovementSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::PlayerMovementSystem>();
+
+namespace ft_game { class PlayerShootingSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::PlayerShootingSystem>();
+
+namespace ft_game { class SceneSpecificData; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::SceneSpecificData>();
+
+namespace ft_game { class Water; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::Water>();
+
+namespace ft_game { class WaterSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::WaterSystem>();
+
 namespace ft_engine { class Metadata; }
 template<> eecs::ComponentBase* createComponentOfType<ft_engine::Metadata>();
 
@@ -91,18 +121,22 @@ namespace reflection
 {
 	enum class ComponentEnum
 	{
-		Metadata = 0,
-		CharacterController = 1,
-		Collider = 2,
-		FixedJoint = 3,
-		Rigidbody = 4,
-		Transform = 5,
-		TriggerCollider = 6,
-		Camera = 7,
-		CylinderLight = 8,
-		DirectionalLight = 9,
-		PointLight = 10,
-		SkinnedMeshRenderer = 11,
-		StaticMeshRenderer = 12,
+		LineRenderer = 0,
+		Player = 1,
+		SceneSpecificData = 2,
+		Water = 3,
+		Metadata = 4,
+		CharacterController = 5,
+		Collider = 6,
+		FixedJoint = 7,
+		Rigidbody = 8,
+		Transform = 9,
+		TriggerCollider = 10,
+		Camera = 11,
+		CylinderLight = 12,
+		DirectionalLight = 13,
+		PointLight = 14,
+		SkinnedMeshRenderer = 15,
+		StaticMeshRenderer = 16,
 	}; //enum class ComponentEnum
 } //namespace reflection
