@@ -42,6 +42,12 @@ template<> eecs::ComponentBase* createComponentOfType<ft_game::Water>();
 namespace ft_game { class WaterSystem; }
 template<> eecs::SystemBase* createObjectOfType<ft_game::WaterSystem>();
 
+namespace ft_game { class WeaponGun; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::WeaponGun>();
+
+namespace ft_game { class WeaponKnife; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::WeaponKnife>();
+
 namespace ft_engine { class Metadata; }
 template<> eecs::ComponentBase* createComponentOfType<ft_engine::Metadata>();
 
@@ -125,18 +131,20 @@ namespace reflection
 		Player = 1,
 		SceneSpecificData = 2,
 		Water = 3,
-		Metadata = 4,
-		CharacterController = 5,
-		Collider = 6,
-		FixedJoint = 7,
-		Rigidbody = 8,
-		Transform = 9,
-		TriggerCollider = 10,
-		Camera = 11,
-		CylinderLight = 12,
-		DirectionalLight = 13,
-		PointLight = 14,
-		SkinnedMeshRenderer = 15,
-		StaticMeshRenderer = 16,
+		WeaponGun = 4,
+		WeaponKnife = 5,
+		Metadata = 6,
+		CharacterController = 7,
+		Collider = 8,
+		FixedJoint = 9,
+		Rigidbody = 10,
+		Transform = 11,
+		TriggerCollider = 12,
+		Camera = 13,
+		CylinderLight = 14,
+		DirectionalLight = 15,
+		PointLight = 16,
+		SkinnedMeshRenderer = 17,
+		StaticMeshRenderer = 18,
 	}; //enum class ComponentEnum
 } //namespace reflection

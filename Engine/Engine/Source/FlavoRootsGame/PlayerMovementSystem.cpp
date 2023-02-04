@@ -3,6 +3,8 @@
 #include "Physics/CharacterController.h"
 #include "Physics/Transform.h"
 #include "FlavoRootsGame/Player.h"
+#include "FlavoRootsGame/WeaponGun.h"
+#include "FlavoRootsGame/WeaponKnife.h"
 #include "Rendering/Camera.h"
 #include "FTime.h"
 #include "Maths/Maths.h"
@@ -53,8 +55,17 @@ void ft_game::PlayerMovementSystem::update(EntityManager& entities, double delta
 		cameraTransforms[playerComponent->bLocal ? 0 : 1] = it.getComponent<ft_engine::Transform>().get();
 	}
 
-	//std::vector<Entity> guns = entities.getEntitiesWithComponents<Transform, Gun>();
-	std::vector<Entity> players = entities.getEntitiesWithComponents<Transform, ft_render::SkinnedMeshRenderer, Player>();
+	std::vector<Entity> gun_entities = entities.getEntitiesWithComponents<WeaponGun, Transform, Player>();
+	auto get_player_gun = [&](bool bLocal) -> Entity* {
+		for (Entity& ent : gun_entities)
+		{
+			if (bLocal == ent.getComponent<Player>()->bLocal)
+				return &ent;
+		}
+		return nullptr;
+	};
+
+	std::vector<Entity> players = entities.getEntitiesWithComponents<CharacterController, ft_render::SkinnedMeshRenderer, Player>();
 	for (auto& it : players) {
 		Player* player = it.getComponent<Player>().get();
 		ft_render::SkinnedMeshRenderer* renderer = it.getComponent<ft_render::SkinnedMeshRenderer>().get();
@@ -69,35 +80,22 @@ void ft_game::PlayerMovementSystem::update(EntityManager& entities, double delta
 		}
 
 		if (!renderer->additionalBoneOffsets.empty()) {
-			////head bone
-			//renderer->additionalBoneOffsets[22] = Matrix::CreateFromYawPitchRoll(0.0f, -rotationY, 0.0f);
+			//head bone
+			renderer->additionalBoneOffsets[22] = Matrix::CreateFromYawPitchRoll(0.0f, -rotationY, 0.0f);
+			// right lowerarm
+			renderer->additionalBoneOffsets[4] = Matrix::CreateFromYawPitchRoll(0.0f, 0.0f, rotationY);
 
-			//if (gunCount_[index] >= 1) { //right lowerarm
-			//	renderer->additionalBoneOffsets[4] = Matrix::CreateFromYawPitchRoll(0.0f, 0.0f, rotationY);
-			//	if (player->bLocal) { //right hand
-			//		gunHandles_[EGunColor::EARTH]->otherGunMatrix = renderer->thisMeshBoneInfo_[5].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[5].finalTransform_;
-			//	} else {
-			//		gunHandles_[EGunColor::AIR]->otherGunMatrix = renderer->thisMeshBoneInfo_[5].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[5].finalTransform_;
-			//	}
-			//}
-			//if (gunCount_[index] == 2) { //left lowerarm
-			//	renderer->additionalBoneOffsets[24] = Matrix::CreateFromYawPitchRoll(0.0f, 0.0f, -rotationY);
-			//	if (player->bLocal) { //left hand
-			//		gunHandles_[EGunColor::ICE]->otherGunMatrix = renderer->thisMeshBoneInfo_[25].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[25].finalTransform_;
-			//	} else {
-			//		gunHandles_[EGunColor::FIRE]->otherGunMatrix = renderer->thisMeshBoneInfo_[25].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[25].finalTransform_;
-			//	}
-			//}
+			Entity* gun_entity = get_player_gun(player->bLocal);
+			gun_entity->getComponent<WeaponGun>()->otherGunMatrix = renderer->thisMeshBoneInfo_[5].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[5].finalTransform_;
 		}
 	}
 
-	//Set gun positions from our view
-	//for (auto& it : guns) {
-	//	Gun* gun = it.getComponent<Gun>().get();
-	//	Transform* gunTransform = it.getComponent<Transform>().get();
-	//	const Matrix additionalTransform = Matrix::CreateTranslation(((gun->bLeft) ? 0.0 : 0.0f), 0.0f, 0.0f);
-	//	gun->ownGunMatrix = additionalTransform * gunTransform->getWorldTransform();
-	//}
+	// Set gun positions from our view
+	for (Entity& ent : gun_entities)
+	{
+		const Matrix additionalTransform = Matrix::CreateTranslation(0.0f, 0.0f, 0.0f);
+		ent.getComponent<WeaponGun>()->ownGunMatrix = additionalTransform * ent.getComponent<Transform>()->getWorldTransform();
+	}
 }
 
 void ft_game::PlayerMovementSystem::fixedUpdate(EntityManager& entities, double deltaTime) {
@@ -169,7 +167,7 @@ void ft_game::PlayerMovementSystem::onFreezeMovement(const EventFreezeMovement& 
 
 void ft_game::PlayerMovementSystem::onPostSceneLoaded(const EventPostSceneLoaded& event) {
 	EntityManager& entities = SceneManager::getInstance().getScene().getEntityManager();
-	std::vector<Entity> players = entities.getEntitiesWithComponents<Player, ft_render::SkinnedMeshRenderer>();
+	std::vector<Entity> players = entities.getEntitiesWithComponents<CharacterController, Player, ft_render::SkinnedMeshRenderer>();
 
 	for (auto& it : players) {
 		//init animation data

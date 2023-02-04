@@ -186,6 +186,12 @@
     <ClCompile Include="Source\FlavoRootsGame\Player.cpp">
       <Filter>Engine\Source\FlavoRootsGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\WeaponGun.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\WeaponKnife.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\EngineEvent.h">
@@ -318,6 +324,12 @@
       <Filter>Engine\Include\FlavoRootsGame</Filter>
     </ClInclude>
     <ClInclude Include="Include\FlavoRootsGame\WaterSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\WeaponGun.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\WeaponKnife.h">
       <Filter>Engine\Include\FlavoRootsGame</Filter>
     </ClInclude>
   </ItemGroup>

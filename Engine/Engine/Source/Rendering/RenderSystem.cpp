@@ -19,6 +19,7 @@
 #include "imgui_impl_dx11.h"
 #include "SceneManager.h"
 #include "FlavoRootsGame/Player.h"
+#include "FlavoRootsGame/SceneSpecificData.h"
 
 // Prefer discrete GPU on switchable GPU systems
 extern "C"
@@ -436,6 +437,54 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 
 	pDevCon->OMSetBlendState(nullptr, nullptr, 0xffffffff);
 	pDevCon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	// Update scene specific data
+	if (requestSceneSpecificDataUpdate_) {
+
+		eecs::Entity ssd = entities.getEntityWithComponents<ft_game::SceneSpecificData>();
+		if (ssd.isValid()) {
+			ft_game::SceneSpecificData* pSSD = ssd.getComponent<ft_game::SceneSpecificData>().get();
+
+			auto& cbData = cbufferPostprocess_.GetBufferData();
+
+			cbData.tonemappingCurveABCD.x = pSSD->postprocess.tonemappingCurveA_ShoulderStrength_;
+			cbData.tonemappingCurveABCD.y = pSSD->postprocess.tonemappingCurveB_LinearStrength_;
+			cbData.tonemappingCurveABCD.z = pSSD->postprocess.tonemappingCurveC_LinearAngle_;
+			cbData.tonemappingCurveABCD.w = pSSD->postprocess.tonemappingCurveD_ToeStrength_;
+			cbData.tonemappingCurveEF.x = pSSD->postprocess.tonemappingCurveE_ToeNumerator_;
+			cbData.tonemappingCurveEF.y = pSSD->postprocess.tonemappingCurveF_ToeDenominator_;
+			cbData.tonemappingExposureExponent = pSSD->postprocess.tonemappingExposureExponent_;
+			cbData.tonemappingNominatorMultiplier = pSSD->postprocess.tonemappingNominatorMultiplier_;
+			cbData.tonemappingWhitePointScale = pSSD->postprocess.tonemappingWhitePointScale_;
+
+			cbData.eyeAdaptationMinAllowedLuminance = pSSD->postprocess.eyeAdaptationMinAllowedLuminance_;
+			cbData.eyeAdaptationMaxAllowedLuminance = pSSD->postprocess.eyeAdaptationMaxAllowedLuminance_;
+
+			cbData.vignetteIntensity = pSSD->postprocess.vignetteIntensity_;
+			cbData.vignetteColor = Vector3( (const float*) &pSSD->postprocess.vignetteColor_ );
+			cbData.vignetteWeights = Vector3( (const float*) &pSSD->postprocess.vignetteWeights_ );
+
+			cbData.chromaticAberrationCenter = Vector2( (const float*) &pSSD->postprocess.chromaticAberrationCenter_ );
+			cbData.chromaticAberrationIntensity = pSSD->postprocess.chromaticAberrationIntensity_;
+			cbData.chromaticAberrationRange = pSSD->postprocess.chromaticAberrationRange_;
+			cbData.chromaticAberrationSize = pSSD->postprocess.chromaticAberrationSize_;
+			cbData.chromaticAberrationStart = pSSD->postprocess.chromaticAberrationStart_;
+
+			cbData.bloomBlurSigma = pSSD->postprocess.bloomBlurSigma_;
+			cbData.bloomThreshold = pSSD->postprocess.bloomThreshold_;
+			cbData.bloomMultiplier = pSSD->postprocess.bloomMultiplier_;
+
+			cbufferPostprocess_.UpdateBuffer(pDevCon);
+			cbufferPostprocess_.SetPS(pDevCon, 13);		
+
+			requestSceneSpecificDataUpdate_ = false;
+
+
+			if (FWindow::getInstance().isEditorWindow()) {
+				requestSceneSpecificDataUpdate_ = true;
+			}
+		}
+	}
 
 	// prepare rendering here (set shaders, vertex layout)
 	std::vector<eecs::Entity> e = entities.getEntitiesWithComponents<ft_render::Camera, ft_engine::Transform>();
