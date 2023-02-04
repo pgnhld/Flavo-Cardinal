@@ -18,7 +18,7 @@
 #include "Logger.h"
 #include "imgui_impl_dx11.h"
 #include "SceneManager.h"
-
+#include "FlavoRootsGame/Player.h"
 
 // Prefer discrete GPU on switchable GPU systems
 extern "C"
@@ -506,8 +506,23 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 		renderer.updateViewConstantBuffer(xform->getWorldPosition(), matView, matProj);
 
 		//used to verify which meshes to render
+		ft_engine::Player* cameraPlayer = e[i].getComponent<ft_engine::Player>().get();
 		for (uint32 meshIndex = 0; meshIndex < staticMeshesCount; meshIndex++) {
 			StaticMeshRenderer* staticmesh = meshes[meshIndex].getComponent<ft_render::StaticMeshRenderer>().get();
+			if (meshes[meshIndex].hasComponent<ft_engine::Player>()) {
+				ft_engine::Player* meshPlayer = meshes[meshIndex].getComponent<ft_engine::Player>().get();
+				if (meshPlayer->bLocal == cameraPlayer->bLocal) {
+					if (!staticmesh->bEnabledOwn)
+						continue;
+				} else {
+					if (!staticmesh->bEnabledOther)
+						continue;
+				}
+			} else {
+				if (!staticmesh->bEnabledOwn)
+					continue;
+			}
+
 			if (staticmesh->getMaterial().colorTint.A() < 0.9999f) {
 				continue;
 			}
@@ -529,6 +544,19 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 		pDevCon->IASetInputLayout(inputLayoutSkinnedGeometry_);
 		for (uint32 skinnedmeshIndex = 0; skinnedmeshIndex < skinnedMeshesCount; skinnedmeshIndex++) {
 			SkinnedMeshRenderer* skinnedmesh = meshesSkinned[skinnedmeshIndex].getComponent<SkinnedMeshRenderer>().get();
+			if (meshesSkinned[skinnedmeshIndex].hasComponent<ft_engine::Player>()) {
+				ft_engine::Player* meshPlayer = meshesSkinned[skinnedmeshIndex].getComponent<ft_engine::Player>().get();
+				if (meshPlayer->bLocal == cameraPlayer->bLocal) {
+					if (!skinnedmesh->bEnabledOwn)
+						continue;
+				} else {
+					if (!skinnedmesh->bEnabledOther)
+						continue;
+				}
+			} else {
+				if (!skinnedmesh->bEnabledOwn)
+					continue;
+			}
 
 			ft_engine::Transform* xform = meshesSkinned[skinnedmeshIndex].getComponent<ft_engine::Transform>().get();
 			DirectX::SimpleMath::Matrix matWorld = xform->getWorldTransform();
@@ -654,6 +682,7 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 	// Transparent objects
 	for (uint32 iCamera = 0; iCamera < numCameras; iCamera++) {
 		Camera* cam = e[iCamera].getComponent<Camera>().get();
+		ft_engine::Player* cameraPlayer = e[iCamera].getComponent<ft_engine::Player>().get();
 		ft_engine::Transform* cameraForm = e[iCamera].getComponent<ft_engine::Transform>().get();
 
 		if (bEditor) {
@@ -685,6 +714,20 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 		pDevCon->OMSetDepthStencilState(depthStencilState_NoDepthWrite, 0);
 		for (uint32 meshIndex = 0; meshIndex < staticMeshesCount; meshIndex++) {
 			StaticMeshRenderer* staticmesh = meshes[meshIndex].getComponent<ft_render::StaticMeshRenderer>().get();
+			if (meshes[meshIndex].hasComponent<ft_engine::Player>()) {
+				ft_engine::Player* meshPlayer = meshes[meshIndex].getComponent<ft_engine::Player>().get();
+				if (meshPlayer->bLocal == cameraPlayer->bLocal) {
+					if (!staticmesh->bEnabledOwn)
+						continue;
+				} else {
+					if (!staticmesh->bEnabledOther)
+						continue;
+				}
+			} else {
+				if (!staticmesh->bEnabledOwn)
+					continue;
+			}
+
 			const float Alpha = staticmesh->getMaterial().colorTint.A();
 			if (Alpha < 0.9999f) {
 				ft_engine::Transform* xform = meshes[meshIndex].getComponent<ft_engine::Transform>().get();
