@@ -20,6 +20,9 @@ namespace ft_engine
 FLAVO_SYSTEM(ft_game, PlayerMovementSystem)
 namespace ft_game
 {
+	class WeaponGun;
+	class WeaponKnife;
+
 	struct AccumulatedPlayerMovementInput
 	{
 		AccumulatedPlayerMovementInput& operator+=(const EventPlayerInput& event);

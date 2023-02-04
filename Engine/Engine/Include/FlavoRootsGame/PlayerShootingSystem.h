@@ -13,6 +13,7 @@ FLAVO_SYSTEM(ft_game, PlayerShootingSystem)
 namespace ft_game
 {
 	class PaintableCube;
+	class WeaponGun;
 
 	class PlayerShootingSystem : public eecs::System<PlayerShootingSystem>, public eecs::IReceiver<PlayerShootingSystem>, public eecs::IInvoker
 	{
@@ -23,6 +24,12 @@ namespace ft_game
 		void update(eecs::EntityManager& entities, double deltaTime) override;
 
 	private:
+		struct PaintEffectData
+		{
+			const float duration = 1.5f;
+			bool bLocalHit = false;
+		};
+
 		struct LineRendererTransformData;
 
 		void drawCrosshair();
@@ -32,6 +39,10 @@ namespace ft_game
 		void onPlayerInput(const EventPlayerInput& event);
 		void onFreezeInput(const EventFreezeInput& event);
 		void getPlayerCamera(bool bLocal, OUT ft_engine::Transform** cameraTransform) const;
+
+		void drawLineRenderer(Vector3 endPosition, WeaponGun* gun, Matrix playerWorldMatrix);
+		void handleAnotherPlayerHit(bool bOtherLocal, WeaponGun* ourGun);
+		IEnumerator drawPaintEffect(CoroutineArg arg);
 
 		const float relativeCrosshairRadius = 0.03f;
 		const float relativeScreenSeparatorWidth = 0.003f;

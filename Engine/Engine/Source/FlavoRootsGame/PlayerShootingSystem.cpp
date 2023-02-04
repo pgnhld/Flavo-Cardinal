@@ -14,6 +14,7 @@
 #include "ImGuiExtension.h"
 #include "FAudio.h"
 #include "FlavoRootsGame/LineRenderer.h"
+#include "FlavoRootsGame/WeaponGun.h"
 
 ft_game::PlayerShootingSystem::PlayerShootingSystem()
 {
@@ -29,6 +30,23 @@ ft_game::PlayerShootingSystem::~PlayerShootingSystem() {
 }
 
 void ft_game::PlayerShootingSystem::update(eecs::EntityManager& entities, double deltaTime) {
+	//Check line renderers lifetime
+	for (size_t i = 0; i < activeLineRenderers_.size(); ++i) {
+		if (!activeLineRenderers_[i].entity.isValid()) {
+			continue;
+		}
+
+		LineRenderer* lineRenderer = activeLineRenderers_[i].entity.getComponent<LineRenderer>().get();
+		lineRenderer->timer += framework::FTime::deltaTime;
+		if (lineRenderer->timer > lineRenderer->maxTime) {
+			entities.destroy(activeLineRenderers_[i].entity);
+		}
+		else {
+			float currDiamater = activeLineRenderers_[i].diameter * ((lineRenderer->maxTime - lineRenderer->timer) / lineRenderer->maxTime);
+			activeLineRenderers_[i].entity.getComponent<ft_engine::Transform>()->setLocalTransform(Matrix::Compose(activeLineRenderers_[i].position, activeLineRenderers_[i].rotation, Vector3(currDiamater, currDiamater, activeLineRenderers_[i].length)));
+		}
+	}
+
 	activeLineRenderers_.erase(std::remove_if(
 			activeLineRenderers_.begin(), activeLineRenderers_.end(), [](LineRendererTransformData x) {return !x.entity.isValid(); }
 		), activeLineRenderers_.end());
@@ -43,39 +61,25 @@ void ft_game::PlayerShootingSystem::drawCrosshair() {
 	style.WindowBorderSize = 0.0f;
 
 	//gun count
-	uint8 localGuns = 0, remoteGuns = 0;
 	EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
-	//std::vector<Entity> guns = entities.getEntitiesWithComponents<ft_engine::Player, Gun>();
-	//for (auto& it : guns) {
-	//	ft_engine::Player* player = it.getComponent<ft_engine::Player>().get();
-	//	if (player->bLocal) {
-	//		++localGuns;
-	//	} else {
-	//		++remoteGuns;
-	//	}
-	//}
+	std::vector<Entity> guns = entities.getEntitiesWithComponents<ft_engine::Player, WeaponGun, ft_engine::Transform>();
 
-	//framework::FResourceManager& resources = framework::FResourceManager::getInstance();
-	//const ImTextureID crosshairLocal = resources.getTexture(
-	//	localGuns == 0 ? "../Data/Images/Crosshairs/Crosshair0.png" : localGuns == 1 ? "../Data/Images/Crosshairs/CrosshairMokebe1.png" : "../Data/Images/Crosshairs/CrosshairMokebe2.png"
-	//)->getSRV();
-	//const ImTextureID crosshairRemote = resources.getTexture(
-	//	remoteGuns == 0 ? "../Data/Images/Crosshairs/Crosshair0.png" : remoteGuns == 1 ? "../Data/Images/Crosshairs/CrosshairTHC1.png" : "../Data/Images/Crosshairs/CrosshairTHC2.png"
-	//)->getSRV();
+	framework::FResourceManager& resources = framework::FResourceManager::getInstance();
+	const ImTextureID crosshair = resources.getTexture("../Data/Images/Crosshairs/Crosshair.png")->getSRV();
 
-	//const float radius = RELY(relativeCrosshairRadius);
-	//bool bWindowOpen = true;
-	//ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
-	//ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
-	//ImGui::SetNextWindowBgAlpha(0.0f);
-	//ImGui::Begin("Crosshair window", &bWindowOpen, INVISIBLE());
+	const float radius = RELY(relativeCrosshairRadius);
+	bool bWindowOpen = true;
+	ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
+	ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
+	ImGui::SetNextWindowBgAlpha(0.0f);
+	ImGui::Begin("Crosshair window", &bWindowOpen, INVISIBLE());
 
-	//ImGui::SetCursorPos(ImVec2(RELX(0.25f) - radius, RELY(0.5f) - radius));
-	//ImGui::Image(crosshairLocal, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+	ImGui::SetCursorPos(ImVec2(RELX(0.25f) - radius, RELY(0.5f) - radius));
+	ImGui::Image(crosshair, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-	//ImGui::SetCursorPos(ImVec2(RELX(0.75f) - radius, RELY(0.5f) - radius));
-	//ImGui::Image(crosshairRemote, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-	//ImGui::End();
+	ImGui::SetCursorPos(ImVec2(RELX(0.75f) - radius, RELY(0.5f) - radius));
+	ImGui::Image(crosshair, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+	ImGui::End();
 }
 
 void ft_game::PlayerShootingSystem::drawScreenSeparator() const {
@@ -110,10 +114,32 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 	ft_engine::Transform* cameraTransform = nullptr;
 	getPlayerCamera(event.bLocalPlayer, &cameraTransform);
 
+	EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
+	std::vector<Entity> gun_entities = entities.getEntitiesWithComponents<WeaponGun, ft_engine::Transform, ft_engine::Player>();
+	auto get_player_gun = [&](bool bLocal) -> Entity* {
+		for (Entity& ent : gun_entities)
+		{
+			if (bLocal == ent.getComponent<ft_engine::Player>()->bLocal)
+				return &ent;
+		}
+		return nullptr;
+	};
+	WeaponGun* gun = get_player_gun(event.bLocalPlayer)->getComponent<WeaponGun>().get();
+
+	std::vector<Entity> player_entities = entities.getEntitiesWithComponents<ft_engine::CharacterController, ft_engine::Transform, ft_engine::Player>();
+	auto get_player = [&](bool bLocal) -> Entity* {
+		for (Entity& ent : player_entities)
+		{
+			if (bLocal == ent.getComponent<ft_engine::Player>()->bLocal)
+				return &ent;
+		}
+		return nullptr;
+	};
+
 	framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::SHOOT);
 
 	ft_engine::Raycast ray;
-	ray.maxLength = 1.0f; //gun->shootRange;
+	ray.maxLength = gun->attackRange;
 	ray.origin = cameraTransform->getWorldPosition();
 	Vector3 forward = -cameraTransform->getWorldForward(); forward.Normalize();
 	ray.direction = forward;
@@ -127,21 +153,135 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 	EventPhysicsRaycast* eventPtr = new EventPhysicsRaycast(ray, layer);
 	invokeNonConst<EventPhysicsRaycast>(eventPtr);
 	if (eventPtr->bHit) {
-		//Entity hit = eventPtr->hitEntity;
-		//ft_engine::Collider* hitCollider = hit.getComponent<ft_engine::Collider>().get();
-		//if (hitCollider->layer == ((event.bLocalPlayer) ? ft_engine::ELayer::PlayerAdditional_2 : ft_engine::ELayer::PlayerAdditional_1)) {
-		//	handleAnotherPlayerHit(!event.bLocalPlayer, gun);
-		//} else {
-		//	handlePaintableHit(eventPtr->hitEntity, gun);
-		//}
+		Entity hit = eventPtr->hitEntity;
+		ft_engine::Collider* hitCollider = hit.getComponent<ft_engine::Collider>().get();
+		if (hitCollider->layer == ((event.bLocalPlayer) ? ft_engine::ELayer::PlayerAdditional_2 : ft_engine::ELayer::PlayerAdditional_1)) {
+			handleAnotherPlayerHit(!event.bLocalPlayer, gun);
+		} else {
+			//handlePaintableHit(eventPtr->hitEntity, gun);
+		}
 	}
 
 	//Draw line renderer
-	//const Vector3 endPosition = ray.origin + ((eventPtr->bHit) ? forward * eventPtr->distance : forward * gun->shootRange);
-	//const Matrix worldPlayerMatrix = ft_engine::SceneManager::getInstance().getScene().getEntityManager().getComponent<ft_engine::Transform>(objectLifter->assignedTo_)->getWorldTransform();
-	//drawLineRenderer(endPosition, gun, worldPlayerMatrix);
+	const Vector3 endPosition = ray.origin + ((eventPtr->bHit) ? forward * eventPtr->distance : forward * gun->attackRange);
+	const Matrix worldPlayerMatrix = ft_engine::SceneManager::getInstance().getScene().getEntityManager().getComponent<ft_engine::Transform>(*get_player(event.bLocalPlayer))->getWorldTransform();
+	drawLineRenderer(endPosition, gun, worldPlayerMatrix);
 
 	delete eventPtr; //necessary because event is of non-const type
+}
+
+void ft_game::PlayerShootingSystem::handleAnotherPlayerHit(bool bOtherLocal, WeaponGun* ourGun) {
+	EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
+	std::vector<Entity> playerEntities = entities.getEntitiesWithComponents<ft_engine::CharacterController, ft_engine::Player>();
+	ft_engine::CharacterController* controller = nullptr;
+	for (Entity e : playerEntities) {
+		ft_engine::Player* p = e.getComponent<ft_engine::Player>().get();
+		if (p->bLocal != bOtherLocal)
+			continue;
+		controller = e.getComponent<ft_engine::CharacterController>().get();
+	}
+
+	if (ASSERT_FAIL(controller != nullptr, "Controller is null"))
+		return;
+
+	PaintEffectData* data = new PaintEffectData();
+	data->bLocalHit = bOtherLocal;
+	const Coroutine tmpCoroutinehandle = START_COROUTINE(
+		&PlayerShootingSystem::drawPaintEffect,
+		PaintEffectData*,
+		data
+	);
+
+	STOP_COROUTINE(controller->rightPaintCoroutine);
+	controller->rightPaintCoroutine = tmpCoroutinehandle;
+}
+
+IEnumerator ft_game::PlayerShootingSystem::drawPaintEffect(CoroutineArg arg) {
+	PaintEffectData* data = static_cast<PaintEffectData*>(arg);
+	ImTextureID effectTexture = IMAGE("ScreenEffects/Hit.png");
+
+	float timer = 0.0f;
+	while (timer < data->duration) {
+		float t = timer / data->duration;
+		t = std::min(t, 1.0f);
+
+		bool bWindowOpen = true;
+		ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
+		ImGui::SetNextWindowPos(REL(0.0f, 0.0f));
+		ImGui::SetNextWindowBgAlpha(0.0f);
+		ImGui::Begin("Special effect window", &bWindowOpen, INVISIBLE());
+
+		ImGui::SetCursorPos(REL((data->bLocalHit ? 0.0f : 0.5f), 0.0f));
+		ImGui::Image(effectTexture, REL(0.5f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f - t * t));
+
+		// #TODO You died message
+
+		ImGui::End();
+
+		timer += framework::FTime::deltaTime;
+		YIELD_RETURN_NULL();
+	}
+
+	// #TODO Allow respawn
+}
+
+void ft_game::PlayerShootingSystem::drawLineRenderer(Vector3 endPosition, WeaponGun* gun, Matrix playerWorldMatrix) {
+	EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
+
+	//Our renderer
+	Entity lineOwn = entities.create();
+	eecs::ComponentHandle<LineRenderer> lineRendererOwn = lineOwn.addComponent<LineRenderer>();
+	eecs::ComponentHandle<ft_engine::Player> playerOwn = lineOwn.addComponent<ft_engine::Player>();
+	playerOwn->bLocal = entities.getComponent<ft_engine::Player>(gun->assignedTo_)->bLocal;
+
+	eecs::ComponentHandle<ft_engine::Transform> transformOwn = lineOwn.addComponent<ft_engine::Transform>();
+	ft_engine::SceneManager::getInstance().getScene().assignEntityParent(lineOwn.getId().index_, 0);
+	transformOwn->setBoundingBox(DirectX::BoundingBox(Vector3(0.0f, 0.0f, -0.5f), Vector3(0.5f, 0.5f, 0.5f)));
+	Vector3 ourStartPosition = gun->ownGunMatrix.Translation();
+	const float ownTrueDiameter = lineRendererOwn->diameter;
+	const Vector3 ownScale = Vector3(ownTrueDiameter, ownTrueDiameter, (endPosition - ourStartPosition).Length());
+	const Matrix ownRotationMatrix = Matrix::CreateLookAt(ourStartPosition, endPosition, Vector3::Up).Invert();
+	Quaternion ownRotation = Quaternion::CreateFromRotationMatrix(ownRotationMatrix);
+	const Matrix ownMatrix = Matrix::Compose(ourStartPosition, ownRotation, ownScale);
+	transformOwn->setLocalTransform(ownMatrix);
+	invoke<EventCertainTransformUpdate>(new EventCertainTransformUpdate(transformOwn.get(), ft_engine::SceneManager::getInstance().getScene().getRootTransform().get()));
+
+	eecs::ComponentHandle<ft_render::StaticMeshRenderer> rendererOwn = lineOwn.addComponent<ft_render::StaticMeshRenderer>();
+	rendererOwn->reloadMesh(framework::FMeshIdentifier(lineRendererOwn->cylinderMeshPath, 1));
+	framework::FMaterial& ownMaterial = rendererOwn->getMaterial();
+	ownMaterial.diffuse = framework::FResourceManager::getInstance().getTexture(lineRendererOwn->diffusePath);
+	ownMaterial.colorTint = lineRendererOwn->lineColor;
+	ownMaterial.specialEffect = 100.0f;
+	rendererOwn->bEnabledOther = false;
+	activeLineRenderers_.emplace_back(LineRendererTransformData(std::move(ownRotation), std::move(ourStartPosition), ownTrueDiameter, ownScale.z, std::move(lineOwn)));
+
+	//Other renderer
+	Entity lineOther = entities.create();
+	eecs::ComponentHandle<LineRenderer> lineRendererOther = lineOther.addComponent<LineRenderer>();
+	eecs::ComponentHandle<ft_engine::Player> playerOther = lineOther.addComponent<ft_engine::Player>();
+	playerOther->bLocal = entities.getComponent<ft_engine::Player>(gun->assignedTo_)->bLocal;
+
+	eecs::ComponentHandle<ft_engine::Transform> transformOther = lineOther.addComponent<ft_engine::Transform>();
+	ft_engine::SceneManager::getInstance().getScene().assignEntityParent(lineOther.getId().index_, 0);
+	transformOther->setBoundingBox(DirectX::BoundingBox(Vector3(0.0f, 0.0f, -0.5f), Vector3(0.5f, 0.5f, 0.5f)));
+	Vector3 otherStartPosition = (gun->otherGunMatrix * playerWorldMatrix).Translation();
+	const float otherTrueDiameter = lineRendererOther->diameter;
+	const Vector3 otherScale = Vector3(otherTrueDiameter, otherTrueDiameter, (endPosition - otherStartPosition).Length());
+	const Matrix otherRotationMatrix = Matrix::CreateLookAt(otherStartPosition, endPosition, Vector3::Up).Invert();
+	Quaternion otherRotation = Quaternion::CreateFromRotationMatrix(otherRotationMatrix);
+	const Matrix otherMatrix = Matrix::Compose(otherStartPosition, otherRotation, otherScale);
+	transformOther->setLocalTransform(otherMatrix);
+	invoke<EventCertainTransformUpdate>(new EventCertainTransformUpdate(transformOther.get(), ft_engine::SceneManager::getInstance().getScene().getRootTransform().get()));
+
+	eecs::ComponentHandle<ft_render::StaticMeshRenderer> rendererOther = lineOther.addComponent<ft_render::StaticMeshRenderer>();
+	rendererOther->reloadMesh(framework::FMeshIdentifier(lineRendererOther->cylinderMeshPath, 1));
+	framework::FMaterial& otherMaterial = rendererOther->getMaterial();
+	otherMaterial.diffuse = framework::FResourceManager::getInstance().getTexture(lineRendererOther->diffusePath);
+	otherMaterial.colorTint = lineRendererOther->lineColor;
+	otherMaterial.specialEffect = 100.0f;
+	rendererOther->bEnabledOwn = false;
+	rendererOther->bEnabledOther = true;
+	activeLineRenderers_.emplace_back(LineRendererTransformData(std::move(otherRotation), std::move(otherStartPosition), otherTrueDiameter, otherScale.z, std::move(lineOther)));
 }
 
 void ft_game::PlayerShootingSystem::onFreezeInput(const EventFreezeInput& event) {

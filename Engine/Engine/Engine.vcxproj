@@ -175,6 +175,8 @@
     <ClCompile Include="Source\FlavoRootsGame\SceneSpecificData.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\Water.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\WaterSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\WeaponGun.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\WeaponKnife.cpp" />
     <ClCompile Include="Source\Metadata.cpp" />
     <ClCompile Include="Source\Network\NetworkManager.cpp" />
     <ClCompile Include="Source\Physics\CharacterController.cpp" />
@@ -238,6 +240,8 @@
     <ClInclude Include="Include\FlavoRootsGame\SceneSpecificData.h" />
     <ClInclude Include="Include\FlavoRootsGame\Water.h" />
     <ClInclude Include="Include\FlavoRootsGame\WaterSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\WeaponGun.h" />
+    <ClInclude Include="Include\FlavoRootsGame\WeaponKnife.h" />
     <ClInclude Include="Include\Generator.h" />
     <ClInclude Include="Include\Metadata.h" />
     <ClInclude Include="Include\Network\NetworkManager.h" />
