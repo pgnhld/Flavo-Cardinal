@@ -192,6 +192,21 @@
     <ClCompile Include="Source\FlavoRootsGame\WeaponKnife.cpp">
       <Filter>Engine\Source\FlavoRootsGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\EndGameSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\Hologram.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\RespawnSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\Pill.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\PillSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\EngineEvent.h">
@@ -330,6 +345,21 @@
       <Filter>Engine\Include\FlavoRootsGame</Filter>
     </ClInclude>
     <ClInclude Include="Include\FlavoRootsGame\WeaponKnife.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\Hologram.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\RespawnSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\EndGameSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\Pill.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\PillSystem.h">
       <Filter>Engine\Include\FlavoRootsGame</Filter>
     </ClInclude>
   </ItemGroup>

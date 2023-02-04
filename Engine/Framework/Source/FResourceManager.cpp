@@ -50,6 +50,12 @@ framework::FExternalTexture* framework::FResourceManager::getTexture(const std::
 	return textureMapIt->second;
 }
 
+framework::FExternalTexture* framework::FResourceManager::getTextureDigit(int digit)
+{
+	auto digit_path = std::string("../Data/Images/Digits/") + std::to_string(digit) + std::string(".png");
+	return getTexture(digit_path);
+}
+
 void framework::FResourceManager::releaseResources() {
 	releaseAllTextures();
 	releaseAllMeshes();

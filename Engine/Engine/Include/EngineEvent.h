@@ -47,6 +47,21 @@ struct EventPhysicsTriggerCollider : eecs::Event<EventPhysicsTriggerCollider>
 	std::vector<eecs::Entity> foundEntities;
 };
 
+struct EventLevelRestart : eecs::Event<EventLevelRestart>
+{
+
+};
+
+struct EventTimeRanOut : eecs::Event<EventTimeRanOut>
+{
+
+};
+
+struct EventAllPillsCollected : eecs::Event<EventAllPillsCollected>
+{
+
+};
+
 struct EventSystemLoaded : eecs::Event<EventSystemLoaded>
 {
 	std::string name;

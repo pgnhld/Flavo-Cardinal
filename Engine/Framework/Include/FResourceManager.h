@@ -18,6 +18,7 @@ namespace framework
 		bool loadMesh(const std::string& filePath, OUT MeshTypeLoadInfo& meshInfo);
 		FMesh* getMesh(const FMeshIdentifier& identifier, OUT MeshTypeLoadInfo& meshInfo);
 		FExternalTexture* getTexture(const std::string& path);
+		FExternalTexture* getTextureDigit(int digit);
 
 		void releaseResources();
 
@@ -33,3 +34,4 @@ namespace framework
 }
 
 #define IMAGE(path) (framework::FResourceManager::getInstance().getTexture(std::string("../Data/Images/") + path)->getSRV())
+#define IMAGE_DIGIT(digit) (framework::FResourceManager::getInstance().getTextureDigit(digit)->getSRV())
