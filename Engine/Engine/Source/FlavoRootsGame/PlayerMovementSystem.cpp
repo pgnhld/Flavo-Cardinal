@@ -85,8 +85,14 @@ void ft_game::PlayerMovementSystem::update(EntityManager& entities, double delta
 			// right lowerarm
 			renderer->additionalBoneOffsets[4] = Matrix::CreateFromYawPitchRoll(0.0f, 0.0f, rotationY);
 
-			Entity* gun_entity = get_player_gun(player->bLocal);
-			gun_entity->getComponent<WeaponGun>()->otherGunMatrix = renderer->thisMeshBoneInfo_[5].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[5].finalTransform_;
+			if (Entity* gun_entity = get_player_gun(player->bLocal)) {
+				if (gun_entity->hasComponent<WeaponGun>()) {
+					auto weaponComponent = gun_entity->getComponent<WeaponGun>();
+					if (weaponComponent.isValid()) {
+						weaponComponent->otherGunMatrix = renderer->thisMeshBoneInfo_[5].boneOffset_.Invert() * renderer->thisMeshBoneInfo_[5].finalTransform_;
+					}
+				}
+			}
 		}
 	}
 

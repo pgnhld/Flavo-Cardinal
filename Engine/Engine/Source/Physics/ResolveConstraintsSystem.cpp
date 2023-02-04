@@ -240,7 +240,7 @@ void ft_engine::ResolveConstraintsSystem::onRaycastQuery(EventPhysicsRaycast& ev
 
 void ft_engine::ResolveConstraintsSystem::onTriggerColliderQuery(EventPhysicsTriggerCollider& eventData) {
 	Matrix triggerColliderTransform = eventData.triggerCollider.offset * eventData.triggerWorldTransform;
-	Vector3 center;
+	Vector3 center = Vector3::Zero;
 	center = DirectX::XMVector3Transform(center, triggerColliderTransform);
 	Vector3 transformedHalfBounds = DirectX::XMVector3Transform(eventData.triggerCollider.halfBounds, triggerColliderTransform);
 	transformedHalfBounds -= triggerColliderTransform.Translation();

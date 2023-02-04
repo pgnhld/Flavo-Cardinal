@@ -124,7 +124,19 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 		}
 		return nullptr;
 	};
-	WeaponGun* gun = get_player_gun(event.bLocalPlayer)->getComponent<WeaponGun>().get();
+
+	Entity* playerEntity = get_player_gun(event.bLocalPlayer);
+	if (!playerEntity) {
+		return;
+	}
+	if (!playerEntity->hasComponent<WeaponGun>()) {
+		return;
+	}
+
+	WeaponGun* gun = playerEntity->getComponent<WeaponGun>().get();
+	if (!gun) {
+		return;
+	}
 
 	std::vector<Entity> player_entities = entities.getEntitiesWithComponents<ft_engine::CharacterController, ft_engine::Transform, ft_engine::Player>();
 	auto get_player = [&](bool bLocal) -> Entity* {
