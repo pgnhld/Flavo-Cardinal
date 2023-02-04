@@ -1,6 +1,7 @@
 #include "FlavoRootsGame/PillSystem.h"
 #include "Physics/Transform.h"
 #include "FlavoRootsGame/Pill.h"
+#include "FlavoRootsGame/Player.h"
 #include "Physics/TriggerCollider.h"
 #include "EngineEvent.h"
 #include "Logger.h"
@@ -125,18 +126,28 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		Pill* pill = pill_entity.getComponent<Pill>().get();
 
 		Matrix worldMatrix = pill_transform->getWorldTransform();
-		std::unique_ptr<EventPhysicsTriggerCollider> event = std::make_unique<EventPhysicsTriggerCollider>(*pill_trigger, worldMatrix, 1 << static_cast<uint8>(ft_engine::ELayer::PlayerAdditional_2));
+		std::unique_ptr<EventPhysicsTriggerCollider> event = std::make_unique<EventPhysicsTriggerCollider>(*pill_trigger, worldMatrix, 1 << static_cast<uint8>(ft_engine::ELayer::Player));
 		invokeNonConst(event.get());
 
 		if (event->foundEntities.empty())
 			return;
 
-		++pillsCollectedSoFar;
-		const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;
-		if (should_game_end)
+		bool young_in_trigger = false;
+		for (Entity& ent : event->foundEntities)
 		{
-			EventAllPillsCollected* event_all = new EventAllPillsCollected();
-			invoke<EventAllPillsCollected>(event_all);
+			if (!ent.getComponent<ft_engine::Player>()->bLocal)
+				young_in_trigger = true;
+		}
+
+		if (young_in_trigger)
+		{
+			++pillsCollectedSoFar;
+			const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;
+			if (should_game_end)
+			{
+				EventAllPillsCollected* event_all = new EventAllPillsCollected();
+				invoke<EventAllPillsCollected>(event_all);
+			}
 		}
 	};
 }

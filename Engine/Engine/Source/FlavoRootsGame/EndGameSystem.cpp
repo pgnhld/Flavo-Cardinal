@@ -14,10 +14,13 @@
 ft_game::EndGameSystem::EndGameSystem() : currentEscapeButton_(EEscapeButtonType::RESUME) {
 	subscribe<EventPlayerInput>(this, &EndGameSystem::onPlayerInput);
 	subscribe<EventAllPillsCollected>(this, &EndGameSystem::onAllPillsCollected);
+	subscribe<EventTimeRanOut>(this, &EndGameSystem::OnTimeRanOut);
 }
 
 ft_game::EndGameSystem::~EndGameSystem() {
 	unsubscribe<EventPlayerInput>();
+	unsubscribe<EventAllPillsCollected>();
+	unsubscribe<EventTimeRanOut>();
 }
 
 void ft_game::EndGameSystem::update(eecs::EntityManager& entities, double deltaTime) {
