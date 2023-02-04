@@ -112,3 +112,8 @@ struct EventEntityRespawn : eecs::Event<EventEntityRespawn>
 {
 	Entity entityToRespawn;
 };
+
+struct EventDestroyEntity : eecs::Event<EventDestroyEntity>
+{
+	Entity entityToDestroy;
+};

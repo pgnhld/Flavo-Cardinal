@@ -142,6 +142,8 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		if (young_in_trigger)
 		{
 			++pillsCollectedSoFar;
+			entities.destroy(pill_entity);
+
 			const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;
 			if (should_game_end)
 			{

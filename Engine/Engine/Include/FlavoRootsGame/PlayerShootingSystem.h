@@ -26,7 +26,8 @@ namespace ft_game
 	private:
 		struct PaintEffectData
 		{
-			const float duration = 1.5f;
+			const float duration = 1.0f;
+			Entity entity_to_respawn;
 			bool bLocalHit = false;
 		};
 

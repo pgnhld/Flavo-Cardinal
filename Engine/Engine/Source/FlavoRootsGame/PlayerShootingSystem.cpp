@@ -3,6 +3,7 @@
 #include "Physics/Transform.h"
 #include "FlavoRootsGame/Player.h"
 #include "Rendering/StaticMeshRenderer.h"
+#include "Rendering/SkinnedMeshRenderer.h"
 #include "Rendering/Camera.h"
 #include "Logger.h"
 #include "imgui.h"
@@ -185,11 +186,14 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 void ft_game::PlayerShootingSystem::handleAnotherPlayerHit(bool bOtherLocal, WeaponGun* ourGun) {
 	EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
 	std::vector<Entity> playerEntities = entities.getEntitiesWithComponents<ft_engine::CharacterController, ft_engine::Player>();
+	Entity* entity_controller = nullptr;
 	ft_engine::CharacterController* controller = nullptr;
 	for (Entity e : playerEntities) {
 		ft_engine::Player* p = e.getComponent<ft_engine::Player>().get();
 		if (p->bLocal != bOtherLocal)
 			continue;
+
+		entity_controller = &e;
 		controller = e.getComponent<ft_engine::CharacterController>().get();
 	}
 
@@ -198,6 +202,8 @@ void ft_game::PlayerShootingSystem::handleAnotherPlayerHit(bool bOtherLocal, Wea
 
 	PaintEffectData* data = new PaintEffectData();
 	data->bLocalHit = bOtherLocal;
+	data->entity_to_respawn = *entity_controller;
+
 	const Coroutine tmpCoroutinehandle = START_COROUTINE(
 		&PlayerShootingSystem::drawPaintEffect,
 		PaintEffectData*,
@@ -226,7 +232,7 @@ IEnumerator ft_game::PlayerShootingSystem::drawPaintEffect(CoroutineArg arg) {
 		ImGui::SetCursorPos(REL((data->bLocalHit ? 0.0f : 0.5f), 0.0f));
 		ImGui::Image(effectTexture, REL(0.5f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f - t * t));
 
-		// #TODO You died message
+		data->entity_to_respawn.getComponent<ft_render::SkinnedMeshRenderer>()->bEnabledOther = (int)(t * 10.0f) % 2 == 0;
 
 		ImGui::End();
 
@@ -234,7 +240,11 @@ IEnumerator ft_game::PlayerShootingSystem::drawPaintEffect(CoroutineArg arg) {
 		YIELD_RETURN_NULL();
 	}
 
-	// #TODO Allow respawn
+	data->entity_to_respawn.getComponent<ft_render::SkinnedMeshRenderer>()->bEnabledOther = true;
+
+	EventEntityRespawn* event = new EventEntityRespawn();
+	event->entityToRespawn = data->entity_to_respawn;
+	invoke<EventEntityRespawn>(event);
 }
 
 void ft_game::PlayerShootingSystem::drawLineRenderer(Vector3 endPosition, WeaponGun* gun, Matrix playerWorldMatrix) {
