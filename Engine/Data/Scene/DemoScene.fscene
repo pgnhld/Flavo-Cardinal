@@ -1,0 +1,61 @@
+* Automatically generated scene file from Flavo Editor
+* Usage:
+*	#XXX YYY
+* where #XXX in :
+*	#SYS = Systems only available in game
+*	#COMP = Any type of Component
+*	#ENT = entity
+*
+#SYS ft_engine::RigidbodySystem 0
+#SYS ft_engine::ResolveConstraintsSystem 0
+#SYS ft_engine::TransformSystem 0
+
+
+#ENT 2 0
+#COMP ft_engine::Metadata {"name":"MainCamera"}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":9.0,"y":9.0,"z":0.0},"rotation":{"x":44.999996185302734,"y":269.9999694824219,"z":0.0},"scale":{"x":1.0,"y":0.9999990463256836,"z":0.9999992251396179}}}
+#COMP ft_render::Camera {"aspectRatio":0.8888800144195557,"farPlane":200.0,"fovDegrees":70.0,"nearPlane":0.02500000037252903}
+
+#ENT 7 0
+#COMP ft_engine::Metadata {"name":"__Demo_Architecture"}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #ENT 6 7
+  #COMP ft_engine::Metadata {"name":"Falling Cube"}
+  #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
+  #COMP ft_engine::Rigidbody {"angularDrag":0.009999999776482582,"constraints":{"value":0},"drag":0.009999999776482582,"mass":1.0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":20.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+
+  #ENT 5 7
+  #COMP ft_engine::Metadata {"name":"Wall"}
+  #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-0.5,"y":2.499999761581421,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":5.0,"z":5.0}}}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+
+  #ENT 4 7
+  #COMP ft_engine::Metadata {"name":"Floor"}
+  #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.3999998569488525,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":5.0,"y":1.0,"z":5.0}}}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+
+  #ENT 8 7
+  #COMP ft_engine::Metadata {"name":"Falling Cube"}
+  #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
+  #COMP ft_engine::Rigidbody {"angularDrag":0.009999999776482582,"constraints":{"value":0},"drag":0.009999999776482582,"mass":1.0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":25.0,"z":2.5999996662139893},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+
+  #ENT 9 7
+  #COMP ft_engine::Metadata {"name":"Falling Cube"}
+  #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
+  #COMP ft_engine::Rigidbody {"angularDrag":0.009999999776482582,"constraints":{"value":0},"drag":0.009999999776482582,"mass":1.0}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":40.0,"z":-2.5999999046325684},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+
+
+#ENT 1 0
+#COMP ft_engine::Metadata {"name":"Directional Light"}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":44.99992370605469,"y":45.0,"z":360.0},"scale":{"x":0.9999982118606567,"y":0.9999999403953552,"z":0.9999992847442627}}}
+#COMP ft_render::DirectionalLight {"baseLight":{"color":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"intensity":1.0}}
+
+

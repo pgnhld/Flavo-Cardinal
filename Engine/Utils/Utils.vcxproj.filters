@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{dea76d59-554f-4666-a8c9-ac275593caad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Maths">
+      <UniqueIdentifier>{844cdb12-afc9-4d40-8248-9b0775f45a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{0b18a8ce-b0e9-4173-b3ca-f03b49cebca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Maths">
+      <UniqueIdentifier>{b4bd61fc-d562-4beb-8a25-13cb04c3efd1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\ByteArray.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DxtkString.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ImGuiExtension.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SystemCall.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Global.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Assertion.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Maths\Maths.cpp">
+      <Filter>Source\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Maths\Matrix3.cpp">
+      <Filter>Source\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Maths\Matrix4.cpp">
+      <Filter>Source\Maths</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Assertion.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ByteArray.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DxtkString.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ImGuiExtension.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\StringExtension.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SystemCall.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Global.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Json.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Logger.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\Maths.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\Matrix3.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\Matrix4.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

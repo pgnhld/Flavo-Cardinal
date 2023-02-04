@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{6cc257ca-1093-4b20-9203-36dc6db93579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Events">
+      <UniqueIdentifier>{e4b62b9a-76a0-4e2f-bc28-855c34985b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{e751a4de-d6e0-4bc3-aabf-65316a5faa1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Events">
+      <UniqueIdentifier>{22a14358-18c2-4e1a-a293-c8af613554e1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EECS.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntityManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Id.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SystemHandle.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SystemManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Event.cpp">
+      <Filter>Source\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\EventManager.cpp">
+      <Filter>Source\Events</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Component.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EECSEvents.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Entity.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EntityManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Id.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EECS.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\System.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SystemHandle.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SystemManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Events\Event.h">
+      <Filter>Include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Events\EventManager.h">
+      <Filter>Include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Events\IInvoker.h">
+      <Filter>Include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Events\IReceiver.h">
+      <Filter>Include\Events</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+* Automatically generated scene file from Flavo Editor
+* Usage:
+*	#XXX YYY
+* where #XXX in:
+* 	#SYS : Systems only available in game
+*	#COMP : Any type of Component
+*	#ENT : entity
+*

@@ -1,0 +1,6 @@
+{
+    "sceneIndexToPath": { 
+        "0" : "../Data/Scene/MainMenu.fscene",
+        "1" : "../Data/Scene/DemoScene.fscene"
+    }
+}

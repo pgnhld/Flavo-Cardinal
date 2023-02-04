@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{540D4356-6A92-48FD-ABF7-5570BE5950FC}</ProjectGuid>
+    <RootNamespace>Engine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)Engine/include;$(SolutionDir)EECS/include;$(SolutionDir)Utils/include;$(SolutionDir)Framework/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Utils/bin/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)Engine/include;$(SolutionDir)EECS/include;$(SolutionDir)Utils/include;$(SolutionDir)Framework/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Utils/bin/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)EECS/Include;$(SolutionDir)Utils/Include;$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)EECS/Include/Coroutines;$(SolutionDir)ThirdParty/CppCoro/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath);</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)EECS/Include;$(SolutionDir)Utils/Include;$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)EECS/Include/Coroutines;$(SolutionDir)ThirdParty/CppCoro/Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath);</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Bin\</OutDir>
+    <SourcePath>$(VC_SourcePath);</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\Assimp\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <AdditionalOptions>/std:c++17 /await %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\Assimp\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/std:c++17 /await %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Audio\BackgroundAudioSystem.cpp" />
+    <ClCompile Include="Source\CoroutineManager.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\LineRenderer.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\MainMenuSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\Player.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\PlayerInputSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\PlayerMovementSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\PlayerShootingSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\SceneSpecificData.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\Water.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\WaterSystem.cpp" />
+    <ClCompile Include="Source\Metadata.cpp" />
+    <ClCompile Include="Source\Network\NetworkManager.cpp" />
+    <ClCompile Include="Source\Physics\CharacterController.cpp" />
+    <ClCompile Include="Source\Physics\Collider.cpp" />
+    <ClCompile Include="Source\Physics\Collision.cpp" />
+    <ClCompile Include="Source\Physics\FixedJoint.cpp" />
+    <ClCompile Include="Source\Physics\Physics.cpp" />
+    <ClCompile Include="Source\Physics\ResolveConstraintsSystem.cpp" />
+    <ClCompile Include="Source\Physics\Rigidbody.cpp" />
+    <ClCompile Include="Source\Physics\RigidbodySystem.cpp" />
+    <ClCompile Include="Source\Physics\SpatialHashmap.cpp" />
+    <ClCompile Include="Source\Physics\Transform.cpp" />
+    <ClCompile Include="Source\Physics\TransformSystem.cpp" />
+    <ClCompile Include="Source\Physics\TriggerCollider.cpp" />
+    <ClCompile Include="Source\Rendering\Camera.cpp" />
+    <ClCompile Include="Source\Rendering\CylinderLight.cpp" />
+    <ClCompile Include="Source\Rendering\DeferredShading.cpp" />
+    <ClCompile Include="Source\Rendering\DirectionalLight.cpp" />
+    <ClCompile Include="Source\Rendering\FullscreenPass.cpp" />
+    <ClCompile Include="Source\Rendering\Light.cpp" />
+    <ClCompile Include="Source\Rendering\PointLight.cpp" />
+    <ClCompile Include="Source\Rendering\RenderSystem.cpp" />
+    <ClCompile Include="Source\Rendering\RenderSystemEyeAdaptation.cpp" />
+    <ClCompile Include="Source\Rendering\RenderSystemResources.cpp" />
+    <ClCompile Include="Source\Rendering\RenderSystemSkybox.cpp" />
+    <ClCompile Include="Source\Rendering\RenderSystemSSAO.cpp" />
+    <ClCompile Include="Source\Rendering\SkinnedMeshRenderer.cpp" />
+    <ClCompile Include="Source\Rendering\StaticMeshRenderer.cpp" />
+    <ClCompile Include="Source\Scene.cpp" />
+    <ClCompile Include="Source\SceneLoadingScreen.cpp" />
+    <ClCompile Include="Source\SceneManager.cpp" />
+    <ClCompile Include="Source\Serializer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EECS\EECS.vcxproj">
+      <Project>{2b9052ad-1c73-45fd-ae6d-f2d20020f6c6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.vcxproj">
+      <Project>{ae228272-5faf-4f05-aca7-f5970bff75c0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\DirectXTK\DirectXTK_Desktop_2017.vcxproj">
+      <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.vcxproj">
+      <Project>{1bf2e2a3-3fc1-4c88-8b5d-7481ed0f6d84}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Audio\BackgroundAudioSystem.h" />
+    <ClInclude Include="Include\CoroutineManager.h" />
+    <ClInclude Include="Include\EngineEvent.h" />
+    <ClInclude Include="Include\FlavoRootsGame\LineRenderer.h" />
+    <ClInclude Include="Include\FlavoRootsGame\MainMenuSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\Player.h" />
+    <ClInclude Include="Include\FlavoRootsGame\PlayerInputSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\PlayerMovementSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\PlayerShootingSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\SceneSpecificData.h" />
+    <ClInclude Include="Include\FlavoRootsGame\Water.h" />
+    <ClInclude Include="Include\FlavoRootsGame\WaterSystem.h" />
+    <ClInclude Include="Include\Generator.h" />
+    <ClInclude Include="Include\Metadata.h" />
+    <ClInclude Include="Include\Network\NetworkManager.h" />
+    <ClInclude Include="Include\Physics\CharacterController.h" />
+    <ClInclude Include="Include\Physics\Collider.h" />
+    <ClInclude Include="Include\Physics\Collision.h" />
+    <ClInclude Include="Include\Physics\FixedJoint.h" />
+    <ClInclude Include="Include\Physics\Physics.h" />
+    <ClInclude Include="Include\Physics\ResolveConstraintsSystem.h" />
+    <ClInclude Include="Include\Physics\Rigidbody.h" />
+    <ClInclude Include="Include\Physics\RigidbodySystem.h" />
+    <ClInclude Include="Include\Physics\SpatialHashmap.h" />
+    <ClInclude Include="Include\Physics\Transform.h" />
+    <ClInclude Include="Include\Physics\TransformSystem.h" />
+    <ClInclude Include="Include\Physics\TriggerCollider.h" />
+    <ClInclude Include="Include\Rendering\Camera.h" />
+    <ClInclude Include="Include\Rendering\CylinderLight.h" />
+    <ClInclude Include="Include\Rendering\DeferredShading.h" />
+    <ClInclude Include="Include\Rendering\DirectionalLight.h" />
+    <ClInclude Include="Include\Rendering\FullscreenPass.h" />
+    <ClInclude Include="Include\Rendering\Light.h" />
+    <ClInclude Include="Include\Rendering\PointLight.h" />
+    <ClInclude Include="Include\Rendering\RenderSystem.h" />
+    <ClInclude Include="Include\Rendering\RenderSystemEyeAdaptation.h" />
+    <ClInclude Include="Include\Rendering\RenderSystemSkybox.h" />
+    <ClInclude Include="Include\Rendering\RenderSystemSSAO.h" />
+    <ClInclude Include="Include\Rendering\SkinnedMeshRenderer.h" />
+    <ClInclude Include="Include\Rendering\StaticMeshRenderer.h" />
+    <ClInclude Include="Include\Scene.h" />
+    <ClInclude Include="Include\SceneLoadingScreen.h" />
+    <ClInclude Include="Include\SceneManager.h" />
+    <ClInclude Include="Include\Serializer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\Common.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\Data\Shaders\simple.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\DeferredShading.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\Data\Shaders\DeferredShadingCommon.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\PostProcessCommon.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\GBuffer.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\ForwardPass.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\Shadows.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\BRDF.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\AdaptedLuminance.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\Data\Shaders\Luminance.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\SimpleCopy.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\Data\Shaders\Tonemapping.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\PostProcessFinal.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\SSAO.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\BloomThreshold.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\BloomBlur.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\ForwardPassHologram.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\Skybox.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\Water.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\FullscreenGlitch.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\LensFlares.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\AA.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\Moon.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

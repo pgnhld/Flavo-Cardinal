@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Compiler">
+      <UniqueIdentifier>{f6d9031c-61a9-4d0c-86e4-d24f12e4a6ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="port\AndroidJNI">
+      <UniqueIdentifier>{cd376b09-6307-45a6-a961-8417863fc223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="port">
+      <UniqueIdentifier>{943151e0-a885-4b8f-a07a-3f9926fb49be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\assimp\Compiler\poppack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\assimp\Compiler\pstdint.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\assimp\Compiler\pushpack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
+      <Filter>port\AndroidJNI</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\assimp\ai_assert.h" />
+    <ClInclude Include="Include\assimp\anim.h" />
+    <ClInclude Include="Include\assimp\camera.h" />
+    <ClInclude Include="Include\assimp\cexport.h" />
+    <ClInclude Include="Include\assimp\cfileio.h" />
+    <ClInclude Include="Include\assimp\cimport.h" />
+    <ClInclude Include="Include\assimp\color4.h" />
+    <ClInclude Include="Include\assimp\config.h" />
+    <ClInclude Include="Include\assimp\DefaultIOStream.h" />
+    <ClInclude Include="Include\assimp\DefaultIOSystem.h" />
+    <ClInclude Include="Include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="Include\assimp\Defines.h" />
+    <ClInclude Include="Include\assimp\defs.h" />
+    <ClInclude Include="Include\assimp\Exporter.hpp" />
+    <ClInclude Include="Include\assimp\Importer.hpp" />
+    <ClInclude Include="Include\assimp\importerdesc.h" />
+    <ClInclude Include="Include\assimp\IOStream.hpp" />
+    <ClInclude Include="Include\assimp\IOSystem.hpp" />
+    <ClInclude Include="Include\assimp\light.h" />
+    <ClInclude Include="Include\assimp\Logger.hpp" />
+    <ClInclude Include="Include\assimp\LogStream.hpp" />
+    <ClInclude Include="Include\assimp\material.h" />
+    <ClInclude Include="Include\assimp\matrix3x3.h" />
+    <ClInclude Include="Include\assimp\matrix4x4.h" />
+    <ClInclude Include="Include\assimp\mesh.h" />
+    <ClInclude Include="Include\assimp\metadata.h" />
+    <ClInclude Include="Include\assimp\NullLogger.hpp" />
+    <ClInclude Include="Include\assimp\postprocess.h" />
+    <ClInclude Include="Include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="Include\assimp\quaternion.h" />
+    <ClInclude Include="Include\assimp\scene.h" />
+    <ClInclude Include="Include\assimp\SceneCombiner.h" />
+    <ClInclude Include="Include\assimp\texture.h" />
+    <ClInclude Include="Include\assimp\types.h" />
+    <ClInclude Include="Include\assimp\vector2.h" />
+    <ClInclude Include="Include\assimp\vector3.h" />
+    <ClInclude Include="Include\assimp\version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Include\assimp\color4.inl" />
+    <None Include="Include\assimp\material.inl" />
+    <None Include="Include\assimp\matrix3x3.inl" />
+    <None Include="Include\assimp\matrix4x4.inl" />
+    <None Include="Include\assimp\quaternion.inl" />
+    <None Include="Include\assimp\vector2.inl" />
+    <None Include="Include\assimp\vector3.inl" />
+  </ItemGroup>
+</Project>

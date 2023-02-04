@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine\Source">
+      <UniqueIdentifier>{335f7bc7-c540-4a1d-9357-786a9b1b1326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{40e3776b-ca41-4e24-9572-80783bf6b47b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Gameplay">
+      <UniqueIdentifier>{4b46bf2e-56eb-4314-b028-562adc84d5fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Physics">
+      <UniqueIdentifier>{ead66d75-9fec-4268-bc83-82cefb8743da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Network">
+      <UniqueIdentifier>{db59850f-84bf-4aae-a9ea-ca1fd00b33ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Rendering">
+      <UniqueIdentifier>{f300ab3a-6566-4be3-b87a-905bcd435271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Include">
+      <UniqueIdentifier>{0eac5e8f-3687-44b3-9938-ab03431086e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Include\Physics">
+      <UniqueIdentifier>{863627f1-e85f-4ad7-9990-d0c8673ca8d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Include\Network">
+      <UniqueIdentifier>{aba6ccde-2ec9-4e78-8cdb-ce2e722345b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Include\Rendering">
+      <UniqueIdentifier>{f9aab87b-dd95-4646-92bb-5e5d494e3401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders">
+      <UniqueIdentifier>{6ebf6a92-e083-4650-910c-44b7566f85db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{4bd3eb0c-ad53-42c7-8b06-a85ed9ac989b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders\Postprocess">
+      <UniqueIdentifier>{fabc1fe2-0d98-4f42-b18d-6cf776b7c89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders\Postprocess\HDR">
+      <UniqueIdentifier>{be9bed47-7d1e-476b-b78a-f4652cb5d48f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Include\Audio">
+      <UniqueIdentifier>{9e15db14-da7d-4890-a3aa-6059521d8818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Include\FlavoRootsGame">
+      <UniqueIdentifier>{02dd8aba-680d-4b7b-be86-6cec2c0cd62c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\Audio">
+      <UniqueIdentifier>{479a83b7-69d5-44b2-9b30-e271ff1173c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source\FlavoRootsGame">
+      <UniqueIdentifier>{1818d6d9-52c5-4d55-bdc5-774a22fd5501}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Metadata.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneManager.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Serializer.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Collider.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Collision.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Physics.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\ResolveConstraintsSystem.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Rigidbody.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\RigidbodySystem.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\SpatialHashmap.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Transform.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\TransformSystem.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\TriggerCollider.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Network\NetworkManager.cpp">
+      <Filter>Engine\Source\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Camera.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderSystem.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\SkinnedMeshRenderer.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\StaticMeshRenderer.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DeferredShading.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\FullscreenPass.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\CharacterController.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DirectionalLight.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Light.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\PointLight.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\CylinderLight.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CoroutineManager.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneLoadingScreen.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderSystemEyeAdaptation.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderSystemSSAO.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderSystemSkybox.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderSystemResources.cpp">
+      <Filter>Engine\Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\FixedJoint.cpp">
+      <Filter>Engine\Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Audio\BackgroundAudioSystem.cpp">
+      <Filter>Engine\Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\PlayerInputSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\PlayerMovementSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\PlayerShootingSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\SceneSpecificData.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\Water.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\WaterSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\LineRenderer.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\MainMenuSystem.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlavoRootsGame\Player.cpp">
+      <Filter>Engine\Source\FlavoRootsGame</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\EngineEvent.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Metadata.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Scene.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SceneManager.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Serializer.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\Collider.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\Collision.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\Physics.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\ResolveConstraintsSystem.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\Rigidbody.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\RigidbodySystem.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\SpatialHashmap.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\Transform.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\TransformSystem.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\TriggerCollider.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Network\NetworkManager.h">
+      <Filter>Engine\Include\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Camera.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\RenderSystem.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\SkinnedMeshRenderer.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\StaticMeshRenderer.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\DeferredShading.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\FullscreenPass.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\CharacterController.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Light.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\PointLight.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\CylinderLight.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\DirectionalLight.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\CoroutineManager.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SceneLoadingScreen.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Generator.h">
+      <Filter>Engine\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\RenderSystemEyeAdaptation.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\RenderSystemSSAO.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\RenderSystemSkybox.h">
+      <Filter>Engine\Include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Physics\FixedJoint.h">
+      <Filter>Engine\Include\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Audio\BackgroundAudioSystem.h">
+      <Filter>Engine\Include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\LineRenderer.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\MainMenuSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\Player.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\PlayerInputSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\PlayerMovementSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\PlayerShootingSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\SceneSpecificData.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\Water.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FlavoRootsGame\WaterSystem.h">
+      <Filter>Engine\Include\FlavoRootsGame</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\Shaders\Common.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\simple.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\DeferredShading.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\DeferredShadingCommon.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\PostProcessCommon.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\GBuffer.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\ForwardPass.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\Shadows.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\BRDF.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\Luminance.hlsl">
+      <Filter>Data\Shaders\Postprocess\HDR</Filter>
+    </None>
+    <None Include="..\Data\Shaders\AdaptedLuminance.hlsl">
+      <Filter>Data\Shaders\Postprocess\HDR</Filter>
+    </None>
+    <None Include="..\Data\Shaders\PostProcessFinal.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\Tonemapping.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\SimpleCopy.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\SSAO.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\ForwardPassHologram.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\BloomThreshold.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\BloomBlur.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\Skybox.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\Water.hlsl">
+      <Filter>Data\Shaders</Filter>
+    </None>
+    <None Include="..\Data\Shaders\FullscreenGlitch.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\AA.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\LensFlares.hlsl">
+      <Filter>Data\Shaders\Postprocess</Filter>
+    </None>
+    <None Include="..\Data\Shaders\Moon.hlsl" />
+  </ItemGroup>
+</Project>

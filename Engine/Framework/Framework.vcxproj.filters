@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{66fd774d-6306-4b90-8ea4-e557085b980e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{c9b8812a-3a89-49f4-afb6-329e832c33c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FWindow.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FInput.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FExternalTexture.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FRendererD3D11.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FRenderTexture.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FD3D11CommonStates.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FTime.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FLoader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FMaterial.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FMesh.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FAudio.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FResourceManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\FWindow.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FInput.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FD3D11ConstantBuffer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FExternalTexture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FRendererD3D11.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FRenderTexture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FD3D11CommonStates.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FTime.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FMesh.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FMaterial.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FLoader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FAudio.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FResourceManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

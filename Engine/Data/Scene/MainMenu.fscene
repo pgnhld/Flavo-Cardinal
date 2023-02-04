@@ -1,0 +1,19 @@
+* Automatically generated scene file from Flavo Editor
+* Usage:
+*	#XXX YYY
+* where #XXX in :
+*	#SYS = Systems only available in game
+*	#COMP = Any type of Component
+*	#ENT = entity
+*
+#SYS ft_game::BackgroundAudioSystem 0
+#SYS ft_engine::TransformSystem 0
+#SYS ft_game::MainMenuSystem 0
+
+
+#ENT 2 0
+#COMP ft_game::SceneSpecificData {"backgroundMusic":2,"postprocess":{"#skyboxCubemapPath":"","bloomBlurSigma_":1.5,"bloomMultiplier_":0.6000000238418579,"bloomThreshold_":3.0,"chromaticAberrationCenter_":{"x":0.5,"y":0.5},"chromaticAberrationIntensity_":5.0,"chromaticAberrationRange_":1.25,"chromaticAberrationSize_":0.75,"chromaticAberrationStart_":0.25,"eyeAdaptationMaxAllowedLuminance_":1.25,"eyeAdaptationMinAllowedLuminance_":0.009999999776482582,"tonemappingCurveA_ShoulderStrength_":0.30000001192092896,"tonemappingCurveB_LinearStrength_":0.30000001192092896,"tonemappingCurveC_LinearAngle_":0.10000000149011612,"tonemappingCurveD_ToeStrength_":0.20000000298023224,"tonemappingCurveE_ToeNumerator_":0.009999999776482582,"tonemappingCurveF_ToeDenominator_":0.30000001192092896,"tonemappingExposureExponent_":0.44999998807907104,"tonemappingNominatorMultiplier_":1.0499999523162842,"tonemappingWhitePointScale_":1.5,"vignetteColor_":{"x":0.04706000164151192,"y":0.04706000164151192,"z":0.04706000164151192},"vignetteIntensity_":1.0,"vignetteWeights_":{"x":0.800000011920929,"y":0.800000011920929,"z":0.699999988079071}}}
+#COMP ft_engine::Metadata {"name":"@Managers"}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+
+
