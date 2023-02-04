@@ -78,12 +78,12 @@
     <LibraryPath>$(SolutionDir)Utils/bin/$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)EECS/Include;$(SolutionDir)Utils/Include;$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)EECS/Include/Coroutines;$(SolutionDir)ThirdParty/CppCoro/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)EECS/Include;$(SolutionDir)Utils/Include;$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)EECS/Include/Coroutines;$(SolutionDir)ThirdParty/CppCoro/Include;$(SolutionDir)ThirdParty/Bullet3;$(IncludePath)</IncludePath>
     <LibraryPath>$(OutDir);$(LibraryPath);</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)EECS/Include;$(SolutionDir)Utils/Include;$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)EECS/Include/Coroutines;$(SolutionDir)ThirdParty/CppCoro/Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)EECS/Include;$(SolutionDir)Utils/Include;$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)EECS/Include/Coroutines;$(SolutionDir)ThirdParty/CppCoro/Include;$(SolutionDir)ThirdParty/Bullet3;$(IncludePath)</IncludePath>
     <LibraryPath>$(OutDir);$(LibraryPath);</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Bin\</OutDir>
     <SourcePath>$(VC_SourcePath);</SourcePath>
@@ -214,6 +214,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Framework\Framework.vcxproj">
       <Project>{ae228272-5faf-4f05-aca7-f5970bff75c0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\Bullet3\Bullet3.vcxproj">
+      <Project>{9a3e12b2-51c2-459f-98af-11117671e61d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ThirdParty\DirectXTK\DirectXTK_Desktop_2017.vcxproj">
       <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{540D4356-6A92-48FD-ABF7-5570BE5950FC}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assimp", "ThirdParty\Assimp\Assimp.vcxproj", "{68A46096-5253-4113-9F37-45858AEA6C53}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTKAudio_Desktop_2017_DXSDK", "ThirdParty\DirectXTK\Audio\DirectXTKAudio_Desktop_2017_DXSDK.vcxproj", "{4F150A30-CECB-49D1-8283-6A3F57438CF5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bullet3", "ThirdParty\Bullet3\Bullet3.vcxproj", "{9A3E12B2-51C2-459F-98AF-11117671E61D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -194,6 +196,22 @@ Global
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5}.Release|x64.ActiveCfg = Release|x64
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5}.Release|x86.ActiveCfg = Release|Win32
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5}.Release|x86.Build.0 = Release|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Debug|Durango.ActiveCfg = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Debug|x64.ActiveCfg = Debug|x64
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Debug|x64.Build.0 = Debug|x64
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Debug|x86.ActiveCfg = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Debug|x86.Build.0 = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Profile|Durango.ActiveCfg = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Profile|Durango.Build.0 = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Profile|x64.ActiveCfg = Debug|x64
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Profile|x64.Build.0 = Debug|x64
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Profile|x86.ActiveCfg = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Profile|x86.Build.0 = Debug|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Release|Durango.ActiveCfg = Release|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Release|x64.ActiveCfg = Release|x64
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Release|x64.Build.0 = Release|x64
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Release|x86.ActiveCfg = Release|Win32
+		{9A3E12B2-51C2-459F-98AF-11117671E61D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,6 +221,7 @@ Global
 		{FC2D8099-18A2-45EA-988D-1CCCABB4EFD3} = {619D89E3-3371-4AC5-B3F7-091C8FB49162}
 		{68A46096-5253-4113-9F37-45858AEA6C53} = {619D89E3-3371-4AC5-B3F7-091C8FB49162}
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5} = {619D89E3-3371-4AC5-B3F7-091C8FB49162}
+		{9A3E12B2-51C2-459F-98AF-11117671E61D} = {619D89E3-3371-4AC5-B3F7-091C8FB49162}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7BAE67F9-F5AF-4E3E-A08E-0B05AFC10B3A}
