@@ -30,6 +30,23 @@ ft_game::PlayerShootingSystem::~PlayerShootingSystem() {
 }
 
 void ft_game::PlayerShootingSystem::update(eecs::EntityManager& entities, double deltaTime) {
+	//Check line renderers lifetime
+	for (size_t i = 0; i < activeLineRenderers_.size(); ++i) {
+		if (!activeLineRenderers_[i].entity.isValid()) {
+			continue;
+		}
+
+		LineRenderer* lineRenderer = activeLineRenderers_[i].entity.getComponent<LineRenderer>().get();
+		lineRenderer->timer += framework::FTime::deltaTime;
+		if (lineRenderer->timer > lineRenderer->maxTime) {
+			entities.destroy(activeLineRenderers_[i].entity);
+		}
+		else {
+			float currDiamater = activeLineRenderers_[i].diameter * ((lineRenderer->maxTime - lineRenderer->timer) / lineRenderer->maxTime);
+			activeLineRenderers_[i].entity.getComponent<ft_engine::Transform>()->setLocalTransform(Matrix::Compose(activeLineRenderers_[i].position, activeLineRenderers_[i].rotation, Vector3(currDiamater, currDiamater, activeLineRenderers_[i].length)));
+		}
+	}
+
 	activeLineRenderers_.erase(std::remove_if(
 			activeLineRenderers_.begin(), activeLineRenderers_.end(), [](LineRendererTransformData x) {return !x.entity.isValid(); }
 		), activeLineRenderers_.end());

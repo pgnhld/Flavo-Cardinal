@@ -41,14 +41,14 @@
   #COMP ft_engine::Metadata {"name":"Falling Cube"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
   #COMP ft_engine::Rigidbody {"angularDrag":0.009999999776482582,"constraints":{"value":0},"drag":0.009999999776482582,"mass":1.0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":25.0,"z":2.5999996662139893},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":5.0,"z":2.5999996662139893},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
 
   #ENT 9 7
   #COMP ft_engine::Metadata {"name":"Falling Cube"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
   #COMP ft_engine::Rigidbody {"angularDrag":0.009999999776482582,"constraints":{"value":0},"drag":0.009999999776482582,"mass":1.0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":40.0,"z":-2.5999999046325684},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":2.5999996662139893,"y":5.0,"z":-2.5999999046325684},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
 
 
@@ -76,9 +76,14 @@
       #COMP ft_engine::Player {"bLocal":true}
       #COMP ft_game::WeaponGun {"attackRange":10.0}
       #COMP ft_engine::Metadata {"name":"OldPapa_Gun"}
-      #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.18000000715255737,"y":-0.14000000059604645,"z":0.3499999940395355},"rotation":{"x":90.0,"y":180.00001525878906,"z":0.0},"scale":{"x":0.09999991953372955,"y":0.09999959915876389,"z":0.09999962151050568}}}
+      #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.18000000715255737,"y":-0.14000000059604645,"z":0.3499999940395355},"rotation":{"x":90.0,"y":180.00001525878906,"z":0.0},"scale":{"x":0.09999987483024597,"y":0.0999995693564415,"z":0.09999959170818329}}}
       #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Guns\\GunPapa.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Guns\\GunPapa_Diffuse.png","#metallic":"..\\Data\\Textures\\Guns\\GunPapa_Metal.png","#normal":"..\\Data\\Textures\\Guns\\GunPapa_Norm.png","#roughness":"..\\Data\\Textures\\Guns\\GunPapa_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
 
+
+    #ENT 16 11
+    #COMP ft_engine::Metadata {"name":"OldPapa_HitCollider"}
+    #COMP ft_engine::Collider {"layer":6,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.41999998688697815,"y":0.9200000166893005,"z":0.2199999988079071}},"primitiveType":0}
+    #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
 
 
   #ENT 12 10
@@ -97,9 +102,14 @@
       #COMP ft_engine::Player {"bLocal":false}
       #COMP ft_game::WeaponGun {"attackRange":2.0}
       #COMP ft_engine::Metadata {"name":"YoungMagick_Knife"}
-      #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.18000000715255737,"y":-0.1400001049041748,"z":0.3499999940395355},"rotation":{"x":90.0,"y":180.00001525878906,"z":0.0},"scale":{"x":0.09999987483024597,"y":0.0999995693564415,"z":0.09999959170818329}}}
+      #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.18000000715255737,"y":-0.1400001049041748,"z":0.3499999940395355},"rotation":{"x":90.0,"y":180.00001525878906,"z":0.0},"scale":{"x":0.09999983012676239,"y":0.09999953955411911,"z":0.0999995619058609}}}
       #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Guns\\KnifeMagick.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Guns\\KnifeMagick_Diff.png","#metallic":"..\\Data\\Textures\\Guns\\KnifeMagick_Metal.png","#normal":"..\\Data\\Textures\\Guns\\KnifeMagick_Norm.png","#roughness":"..\\Data\\Textures\\Guns\\KnifeMagick_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
 
+
+    #ENT 17 12
+    #COMP ft_engine::Metadata {"name":"YoungMagick_HitCollider"}
+    #COMP ft_engine::Collider {"layer":7,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.41999998688697815,"y":0.9200000166893005,"z":0.2199999988079071}},"primitiveType":0}
+    #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
 
 
 
