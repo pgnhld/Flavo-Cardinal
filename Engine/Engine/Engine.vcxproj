@@ -166,12 +166,17 @@
   <ItemGroup>
     <ClCompile Include="Source\Audio\BackgroundAudioSystem.cpp" />
     <ClCompile Include="Source\CoroutineManager.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\EndGameSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\Hologram.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\LineRenderer.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\MainMenuSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\Pill.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\PillSystem.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\Player.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\PlayerInputSystem.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\PlayerMovementSystem.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\PlayerShootingSystem.cpp" />
+    <ClCompile Include="Source\FlavoRootsGame\RespawnSystem.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\SceneSpecificData.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\Water.cpp" />
     <ClCompile Include="Source\FlavoRootsGame\WaterSystem.cpp" />
@@ -231,12 +236,17 @@
     <ClInclude Include="Include\Audio\BackgroundAudioSystem.h" />
     <ClInclude Include="Include\CoroutineManager.h" />
     <ClInclude Include="Include\EngineEvent.h" />
+    <ClInclude Include="Include\FlavoRootsGame\EndGameSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\Hologram.h" />
     <ClInclude Include="Include\FlavoRootsGame\LineRenderer.h" />
     <ClInclude Include="Include\FlavoRootsGame\MainMenuSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\Pill.h" />
+    <ClInclude Include="Include\FlavoRootsGame\PillSystem.h" />
     <ClInclude Include="Include\FlavoRootsGame\Player.h" />
     <ClInclude Include="Include\FlavoRootsGame\PlayerInputSystem.h" />
     <ClInclude Include="Include\FlavoRootsGame\PlayerMovementSystem.h" />
     <ClInclude Include="Include\FlavoRootsGame\PlayerShootingSystem.h" />
+    <ClInclude Include="Include\FlavoRootsGame\RespawnSystem.h" />
     <ClInclude Include="Include\FlavoRootsGame\SceneSpecificData.h" />
     <ClInclude Include="Include\FlavoRootsGame\Water.h" />
     <ClInclude Include="Include\FlavoRootsGame\WaterSystem.h" />

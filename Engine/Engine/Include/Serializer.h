@@ -15,11 +15,23 @@ eecs::ComponentBase* createComponentOfType() { return new T(); }
 namespace ft_game { class BackgroundAudioSystem; }
 template<> eecs::SystemBase* createObjectOfType<ft_game::BackgroundAudioSystem>();
 
+namespace ft_game { class EndGameSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::EndGameSystem>();
+
+namespace ft_game { class Hologram; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::Hologram>();
+
 namespace ft_game { class LineRenderer; }
 template<> eecs::ComponentBase* createComponentOfType<ft_game::LineRenderer>();
 
 namespace ft_game { class MainMenuSystem; }
 template<> eecs::SystemBase* createObjectOfType<ft_game::MainMenuSystem>();
+
+namespace ft_game { class Pill; }
+template<> eecs::ComponentBase* createComponentOfType<ft_game::Pill>();
+
+namespace ft_game { class PillSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::PillSystem>();
 
 namespace ft_engine { class Player; }
 template<> eecs::ComponentBase* createComponentOfType<ft_engine::Player>();
@@ -32,6 +44,9 @@ template<> eecs::SystemBase* createObjectOfType<ft_game::PlayerMovementSystem>()
 
 namespace ft_game { class PlayerShootingSystem; }
 template<> eecs::SystemBase* createObjectOfType<ft_game::PlayerShootingSystem>();
+
+namespace ft_game { class RespawnSystem; }
+template<> eecs::SystemBase* createObjectOfType<ft_game::RespawnSystem>();
 
 namespace ft_game { class SceneSpecificData; }
 template<> eecs::ComponentBase* createComponentOfType<ft_game::SceneSpecificData>();
@@ -127,24 +142,26 @@ namespace reflection
 {
 	enum class ComponentEnum
 	{
-		LineRenderer = 0,
-		Player = 1,
-		SceneSpecificData = 2,
-		Water = 3,
-		WeaponGun = 4,
-		WeaponKnife = 5,
-		Metadata = 6,
-		CharacterController = 7,
-		Collider = 8,
-		FixedJoint = 9,
-		Rigidbody = 10,
-		Transform = 11,
-		TriggerCollider = 12,
-		Camera = 13,
-		CylinderLight = 14,
-		DirectionalLight = 15,
-		PointLight = 16,
-		SkinnedMeshRenderer = 17,
-		StaticMeshRenderer = 18,
+		Hologram = 0,
+		LineRenderer = 1,
+		Pill = 2,
+		Player = 3,
+		SceneSpecificData = 4,
+		Water = 5,
+		WeaponGun = 6,
+		WeaponKnife = 7,
+		Metadata = 8,
+		CharacterController = 9,
+		Collider = 10,
+		FixedJoint = 11,
+		Rigidbody = 12,
+		Transform = 13,
+		TriggerCollider = 14,
+		Camera = 15,
+		CylinderLight = 16,
+		DirectionalLight = 17,
+		PointLight = 18,
+		SkinnedMeshRenderer = 19,
+		StaticMeshRenderer = 20,
 	}; //enum class ComponentEnum
 } //namespace reflection
