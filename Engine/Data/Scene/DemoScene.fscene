@@ -6,16 +6,14 @@
 *	#COMP = Any type of Component
 *	#ENT = entity
 *
+#SYS ft_game::BackgroundAudioSystem 0
+#SYS ft_engine::PlayerInputSystem 0
+#SYS ft_game::PlayerMovementSystem 0
+#SYS ft_game::PlayerShootingSystem 0
 #SYS ft_engine::RigidbodySystem 0
 #SYS ft_engine::ResolveConstraintsSystem 0
 #SYS ft_engine::TransformSystem 0
-#SYS ft_game::BackgroundAudioSystem 0
 
-
-#ENT 2 0
-#COMP ft_engine::Metadata {"name":"MainCamera"}
-#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":9.0,"y":9.0,"z":0.0},"rotation":{"x":44.99998092651367,"y":270.0,"z":0.0},"scale":{"x":1.0000001192092896,"y":0.9999991059303284,"z":0.9999993443489075}}}
-#COMP ft_render::Camera {"aspectRatio":0.8888800144195557,"farPlane":200.0,"fovDegrees":70.0,"nearPlane":0.02500000037252903}
 
 #ENT 7 0
 #COMP ft_engine::Metadata {"name":"__Demo_Architecture"}
@@ -66,15 +64,29 @@
   #COMP ft_engine::Player {"bLocal":true}
   #COMP ft_engine::Metadata {"name":"OldPapa"}
   #COMP ft_engine::CharacterController {"backwardSpeed":0.5,"forwardSpeed":1.0,"horizontalSpeed":1.0,"jumpCooldownInAir":15.0,"jumpSpeed":1.0,"sidesSpeed":1.0,"verticalSpeed":1.0}
+  #COMP ft_engine::Collider {"layer":1,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.4000000059604645,"y":0.8999999761581421,"z":0.20000000298023224}},"primitiveType":0}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":5.0,"y":2.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
   #COMP ft_render::SkinnedMeshRenderer {"#meshPath":"..\\Data\\Models\\Characters\\OldPapa.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Character\\OldPapa_Diffuse.png","#metallic":"..\\Data\\Textures\\Character\\OldPapa_Metallic.png","#normal":"..\\Data\\Textures\\Character\\OldPapa_Normal.png","#roughness":"..\\Data\\Textures\\Character\\OldPapa_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":2}
+    #ENT 13 11
+    #COMP ft_engine::Player {"bLocal":true}
+    #COMP ft_engine::Metadata {"name":"OldPapa_Camera"}
+    #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":-0.31988683342933655,"y":0.75,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+    #COMP ft_render::Camera {"aspectRatio":0.8888890147209167,"farPlane":250.0,"fovDegrees":95.0,"nearPlane":0.02500000037252903}
+
 
   #ENT 12 10
   #COMP ft_engine::Player {"bLocal":false}
   #COMP ft_engine::Metadata {"name":"YoungMagick"}
   #COMP ft_engine::CharacterController {"backwardSpeed":1.0,"forwardSpeed":2.0,"horizontalSpeed":2.0,"jumpCooldownInAir":15.0,"jumpSpeed":2.0,"sidesSpeed":2.0,"verticalSpeed":2.0}
+  #COMP ft_engine::Collider {"layer":1,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.4000000059604645,"y":0.8999999761581421,"z":0.20000000298023224}},"primitiveType":0}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":8.0,"y":2.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
-  #COMP ft_render::SkinnedMeshRenderer {"#meshPath":"..\\Data\\Models\\Characters\\YoungMagick.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Character\\OldPapa_Diffuse.png","#metallic":"..\\Data\\Textures\\Character\\OldPapa_Metallic.png","#normal":"..\\Data\\Textures\\Character\\OldPapa_Normal.png","#roughness":"..\\Data\\Textures\\Character\\OldPapa_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":2}
+  #COMP ft_render::SkinnedMeshRenderer {"#meshPath":"..\\Data\\Models\\Characters\\YoungMagick.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Character\\YoungMagick_Diffuse.png","#metallic":"..\\Data\\Textures\\Character\\YoungMagick_Metallic.png","#normal":"..\\Data\\Textures\\Character\\YoungMagick_Normal.png","#roughness":"..\\Data\\Textures\\Character\\YoungMagick_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":2}
+    #ENT 14 12
+    #COMP ft_engine::Player {"bLocal":false}
+    #COMP ft_engine::Metadata {"name":"YoungMagick_Camera"}
+    #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":-3.3198862075805664,"y":0.75,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
+    #COMP ft_render::Camera {"aspectRatio":0.8888890147209167,"farPlane":250.0,"fovDegrees":95.0,"nearPlane":0.02500000037252903}
+
 
 
 

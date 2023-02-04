@@ -55,27 +55,27 @@ void ft_game::PlayerShootingSystem::drawCrosshair() {
 	//	}
 	//}
 
-	framework::FResourceManager& resources = framework::FResourceManager::getInstance();
-	const ImTextureID crosshairLocal = resources.getTexture(
-		localGuns == 0 ? "../Data/Images/Crosshairs/Crosshair0.png" : localGuns == 1 ? "../Data/Images/Crosshairs/CrosshairMokebe1.png" : "../Data/Images/Crosshairs/CrosshairMokebe2.png"
-	)->getSRV();
-	const ImTextureID crosshairRemote = resources.getTexture(
-		remoteGuns == 0 ? "../Data/Images/Crosshairs/Crosshair0.png" : remoteGuns == 1 ? "../Data/Images/Crosshairs/CrosshairTHC1.png" : "../Data/Images/Crosshairs/CrosshairTHC2.png"
-	)->getSRV();
+	//framework::FResourceManager& resources = framework::FResourceManager::getInstance();
+	//const ImTextureID crosshairLocal = resources.getTexture(
+	//	localGuns == 0 ? "../Data/Images/Crosshairs/Crosshair0.png" : localGuns == 1 ? "../Data/Images/Crosshairs/CrosshairMokebe1.png" : "../Data/Images/Crosshairs/CrosshairMokebe2.png"
+	//)->getSRV();
+	//const ImTextureID crosshairRemote = resources.getTexture(
+	//	remoteGuns == 0 ? "../Data/Images/Crosshairs/Crosshair0.png" : remoteGuns == 1 ? "../Data/Images/Crosshairs/CrosshairTHC1.png" : "../Data/Images/Crosshairs/CrosshairTHC2.png"
+	//)->getSRV();
 
-	const float radius = RELY(relativeCrosshairRadius);
-	bool bWindowOpen = true;
-	ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
-	ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
-	ImGui::SetNextWindowBgAlpha(0.0f);
-	ImGui::Begin("Crosshair window", &bWindowOpen, INVISIBLE());
+	//const float radius = RELY(relativeCrosshairRadius);
+	//bool bWindowOpen = true;
+	//ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
+	//ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
+	//ImGui::SetNextWindowBgAlpha(0.0f);
+	//ImGui::Begin("Crosshair window", &bWindowOpen, INVISIBLE());
 
-	ImGui::SetCursorPos(ImVec2(RELX(0.25f) - radius, RELY(0.5f) - radius));
-	ImGui::Image(crosshairLocal, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+	//ImGui::SetCursorPos(ImVec2(RELX(0.25f) - radius, RELY(0.5f) - radius));
+	//ImGui::Image(crosshairLocal, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-	ImGui::SetCursorPos(ImVec2(RELX(0.75f) - radius, RELY(0.5f) - radius));
-	ImGui::Image(crosshairRemote, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-	ImGui::End();
+	//ImGui::SetCursorPos(ImVec2(RELX(0.75f) - radius, RELY(0.5f) - radius));
+	//ImGui::Image(crosshairRemote, ImVec2(radius * 2.0f, radius * 2.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+	//ImGui::End();
 }
 
 void ft_game::PlayerShootingSystem::drawScreenSeparator() const {

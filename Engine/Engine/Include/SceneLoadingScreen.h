@@ -17,7 +17,7 @@ namespace ft_engine
 		void loadingThreadLoop(float progress, bool bFinished = false);
 
 	private:
-		const float splashScreenDuration_ = 8.0f;
+		const float splashScreenDuration_ = 1.0f;
 
 		float loadingTimer_ = 0.0f;
 		bool bShowSplash_ = false;
