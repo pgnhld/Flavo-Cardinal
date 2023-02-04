@@ -142,6 +142,12 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		if (young_in_trigger)
 		{
 			++pillsCollectedSoFar;
+
+			std::vector<eecs::ComponentHandle<ft_engine::Transform>> destroyable = pill_entity.getComponent<ft_engine::Transform>()->getChildren();
+			for (auto& tr : destroyable)
+			{
+				entities.destroy(tr->assignedTo_);
+			}
 			entities.destroy(pill_entity);
 
 			const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;

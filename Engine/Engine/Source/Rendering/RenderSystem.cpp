@@ -20,6 +20,7 @@
 #include "SceneManager.h"
 #include "FlavoRootsGame/Player.h"
 #include "FlavoRootsGame/SceneSpecificData.h"
+#include "FlavoRootsGame/WeaponGun.h"
 #include "FlavoRootsGame/Hologram.h"
 #include "FlavoRootsGame/Water.h"
 
@@ -574,6 +575,9 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 					continue;
 			}
 
+			if (!meshes[meshIndex].getComponent<ft_game::WeaponGun>().get())
+				continue;
+
 			if (staticmesh->getMaterial().colorTint.A() < 0.9999f) {
 				continue;
 			}
@@ -780,7 +784,8 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 			}
 
 			const float Alpha = staticmesh->getMaterial().colorTint.A();
-			if (Alpha < 0.9999f) {
+			//if (Alpha < 0.9999f)
+			{
 				ft_engine::Transform* xform = meshes[meshIndex].getComponent<ft_engine::Transform>().get();
 				Matrix matWorld = xform->getWorldTransform();
 				DirectX::BoundingBox boundingBox = xform->getTransformedBoundingBox();
