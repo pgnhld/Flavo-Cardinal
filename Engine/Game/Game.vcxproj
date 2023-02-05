@@ -73,13 +73,13 @@
     <IncludePath>$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)EECS/Include;$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)Utils/Include;$(SolutionDir)Game/Include;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)ThirdParty/CppCoro/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Bin\</OutDir>
-    <TargetName>FlavoBabilon</TargetName>
+    <TargetName>FlavoCardinal</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)ThirdParty/DirectXTK/Inc;$(SolutionDir)EECS/Include;$(SolutionDir)Engine/Include;$(SolutionDir)Framework/Include;$(SolutionDir)Utils/Include;$(SolutionDir)Game/Include;$(SolutionDir)ThirdParty/ImGUI/Include;$(SolutionDir)ThirdParty/CppCoro/Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\Bin\</OutDir>
-    <TargetName>FlavoBabilon</TargetName>
+    <TargetName>FlavoCardinal</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
