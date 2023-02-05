@@ -31,6 +31,12 @@ ft_game::PlayerShootingSystem::~PlayerShootingSystem() {
 }
 
 void ft_game::PlayerShootingSystem::update(eecs::EntityManager& entities, double deltaTime) {
+	// Update weapon cooldowns
+	std::vector<Entity> gunEntities = entities.getEntitiesWithComponents<WeaponGun>();
+	for (Entity gunEnt : gunEntities) {
+		gunEnt.getComponent<WeaponGun>()->timeSinceLastGunShot += deltaTime;
+	}
+
 	//Check line renderers lifetime
 	for (size_t i = 0; i < activeLineRenderers_.size(); ++i) {
 		if (!activeLineRenderers_[i].entity.isValid()) {
@@ -139,6 +145,10 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 		return;
 	}
 
+	if (gun->timeSinceLastGunShot < WeaponGun::cooldown) {
+		return;
+	}
+
 	std::vector<Entity> player_entities = entities.getEntitiesWithComponents<ft_engine::CharacterController, ft_engine::Transform, ft_engine::Player>();
 	auto get_player = [&](bool bLocal) -> Entity* {
 		for (Entity& ent : player_entities)
@@ -174,6 +184,8 @@ void ft_game::PlayerShootingSystem::onPlayerInput(const EventPlayerInput& event)
 			//handlePaintableHit(eventPtr->hitEntity, gun);
 		}
 	}
+
+	gun->timeSinceLastGunShot = 0.0f;
 
 	//Draw line renderer
 	const Vector3 endPosition = ray.origin + ((eventPtr->bHit) ? forward * eventPtr->distance : forward * gun->attackRange);
@@ -223,35 +235,25 @@ void ft_game::PlayerShootingSystem::handleAnotherPlayerHit(bool bOtherLocal, Wea
 
 IEnumerator ft_game::PlayerShootingSystem::drawPaintEffect(CoroutineArg arg) {
 	PaintEffectData* data = static_cast<PaintEffectData*>(arg);
-	ImTextureID effectTexture = IMAGE("ScreenEffects/Hit.png");
+
+	EventEntityRespawn* event = new EventEntityRespawn();
+	event->entityToRespawn = data->entity_to_respawn;
+	invoke<EventEntityRespawn>(event);
+
+	//ImTextureID effectTexture = IMAGE("ScreenEffects/Hit.png");
 
 	float timer = 0.0f;
 	while (timer < data->duration) {
 		float t = timer / data->duration;
 		t = std::min(t, 1.0f);
 
-		bool bWindowOpen = true;
-		ImGui::SetNextWindowSize(REL(1.0f, 1.0f), ImGuiCond_Always);
-		ImGui::SetNextWindowPos(REL(0.0f, 0.0f));
-		ImGui::SetNextWindowBgAlpha(0.0f);
-		ImGui::Begin("Special effect window", &bWindowOpen, INVISIBLE());
-
-		ImGui::SetCursorPos(REL((data->bLocalHit ? 0.0f : 0.5f), 0.0f));
-		ImGui::Image(effectTexture, REL(0.5f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f - t * t));
-
 		data->entity_to_respawn.getComponent<ft_render::SkinnedMeshRenderer>()->bEnabledOther = (int)(t * 10.0f) % 2 == 0;
-
-		ImGui::End();
 
 		timer += framework::FTime::deltaTime;
 		YIELD_RETURN_NULL();
 	}
 
 	data->entity_to_respawn.getComponent<ft_render::SkinnedMeshRenderer>()->bEnabledOther = true;
-
-	EventEntityRespawn* event = new EventEntityRespawn();
-	event->entityToRespawn = data->entity_to_respawn;
-	invoke<EventEntityRespawn>(event);
 }
 
 void ft_game::PlayerShootingSystem::drawLineRenderer(Vector3 endPosition, WeaponGun* gun, Matrix playerWorldMatrix) {

@@ -1,5 +1,7 @@
 #include "FlavoRootsGame/WeaponGun.h"
 
+const float ft_game::WeaponGun::cooldown = 0.4f;
+
 nlohmann::json ft_game::WeaponGun::serialize() {
 	return {
 		{ "attackRange", attackRange }

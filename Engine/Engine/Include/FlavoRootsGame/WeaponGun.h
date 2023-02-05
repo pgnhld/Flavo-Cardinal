@@ -13,6 +13,9 @@ namespace ft_game
 		nlohmann::json serialize() override;
 		void deserialize(const nlohmann::json& json) override;
 
+		static const float cooldown;
+
+		float timeSinceLastGunShot = 1.0f;
 		float attackRange = 10.0f;
 
 		Matrix ownGunMatrix;

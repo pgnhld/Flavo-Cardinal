@@ -17,7 +17,7 @@ namespace ft_game
 		const float maxTime = 0.1f;
 
 		const Color lineColor = Color(5.0f, 0.0f, 0.0f, 0.8f);
-		const float diameter = 0.02f;
+		const float diameter = 0.002f;
 
 		const std::string cylinderMeshPath = "../Data/Models/LineRenderer.FBX";
 		const std::string diffusePath = "../Data/Textures/Pure_White_Small.png";
