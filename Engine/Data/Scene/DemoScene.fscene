@@ -49,7 +49,7 @@
 
 #ENT 1 0
 #COMP ft_engine::Metadata {"name":"Directional Light"}
-#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":25.0,"y":25.0,"z":25.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":79.90017700195313,"y":262.9962463378906,"z":0.001684530172497034},"scale":{"x":0.9999937415122986,"y":0.9999887943267822,"z":0.9999867677688599}}}
+#COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":25.0,"y":25.0,"z":25.0}},"local":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":79.90017700195313,"y":262.9962463378906,"z":0.001752689597196877},"scale":{"x":0.9999936819076538,"y":0.9999886751174927,"z":0.9999866485595703}}}
 #COMP ft_render::DirectionalLight {"baseLight":{"color":{"alpha":1.0,"blue":0.699999988079071,"green":0.699999988079071,"red":1.0},"intensity":1.0}}
 
 #ENT 10 0
@@ -71,7 +71,7 @@
       #COMP ft_engine::Player {"bLocal":true}
       #COMP ft_game::WeaponGun {"attackRange":50.0}
       #COMP ft_engine::Metadata {"name":"OldPapa_Gun"}
-      #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.18000000715255737,"y":-0.14000000059604645,"z":0.3499999940395355},"rotation":{"x":90.0,"y":180.00001525878906,"z":0.0},"scale":{"x":0.0999995619058609,"y":0.09999936074018478,"z":0.09999938309192657}}}
+      #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":1.0,"y":1.0,"z":1.0}},"local":{"position":{"x":0.18000000715255737,"y":-0.14000000059604645,"z":0.3499999940395355},"rotation":{"x":90.0,"y":180.00001525878906,"z":0.0},"scale":{"x":0.09999949485063553,"y":0.0999993160367012,"z":0.099999338388443}}}
       #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Guns\\GunPapa.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Guns\\GunPapa_Diffuse.png","#metallic":"..\\Data\\Textures\\Guns\\GunPapa_Metal.png","#normal":"..\\Data\\Textures\\Guns\\GunPapa_Norm.png","#roughness":"..\\Data\\Textures\\Guns\\GunPapa_Rough.png","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":1.0},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
 
 
@@ -99,7 +99,7 @@
   #COMP ft_engine::Metadata {"name":"pill1"}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":2.0,"y":2.0,"z":2.0}},"local":{"position":{"x":0.0,"y":6.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.5,"y":0.5,"z":0.5}}}
   #COMP ft_engine::TriggerCollider {"halfBounds":{"x":1.0,"y":1.0,"z":1.0},"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
-  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Pill.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":0.7999999523162842,"red":0.10000001639127731},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":1.4901161193847656e-08,"y":1.4901161193847656e-08},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
     #ENT 21 20
     #COMP ft_engine::Metadata {"name":"Pill_Light"}
     #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":4.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.019999999552965164,"y":8.0,"z":0.019999999552965164}}}
@@ -111,7 +111,7 @@
   #COMP ft_engine::Metadata {"name":"pill1"}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":2.0,"y":2.0,"z":2.0}},"local":{"position":{"x":15.0,"y":2.0,"z":15.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.5,"y":0.5,"z":0.5}}}
   #COMP ft_engine::TriggerCollider {"halfBounds":{"x":1.0,"y":1.0,"z":1.0},"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
-  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Pill.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
     #ENT 66 65
     #COMP ft_engine::Metadata {"name":"Pill_Light"}
     #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":4.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.019999999552965164,"y":8.0,"z":0.019999999552965164}}}
@@ -123,7 +123,7 @@
   #COMP ft_engine::Metadata {"name":"pill1"}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":2.0,"y":2.0,"z":2.0}},"local":{"position":{"x":15.0,"y":2.0,"z":-15.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.5,"y":0.5,"z":0.5}}}
   #COMP ft_engine::TriggerCollider {"halfBounds":{"x":1.0,"y":1.0,"z":1.0},"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
-  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Pill.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
     #ENT 68 67
     #COMP ft_engine::Metadata {"name":"Pill_Light"}
     #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":4.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.019999999552965164,"y":8.0,"z":0.019999999552965164}}}
@@ -135,7 +135,7 @@
   #COMP ft_engine::Metadata {"name":"pill1"}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":2.0,"y":2.0,"z":2.0}},"local":{"position":{"x":0.0,"y":3.0,"z":-20.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.5,"y":0.5,"z":0.5}}}
   #COMP ft_engine::TriggerCollider {"halfBounds":{"x":1.0,"y":1.0,"z":1.0},"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
-  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Pill.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
     #ENT 70 69
     #COMP ft_engine::Metadata {"name":"Pill_Light"}
     #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":4.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.019999999552965164,"y":8.0,"z":0.019999999552965164}}}
@@ -147,7 +147,7 @@
   #COMP ft_engine::Metadata {"name":"pill1"}
   #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":2.0,"y":2.0,"z":2.0}},"local":{"position":{"x":0.0,"y":3.0,"z":20.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.5,"y":0.5,"z":0.5}}}
   #COMP ft_engine::TriggerCollider {"halfBounds":{"x":1.0,"y":1.0,"z":1.0},"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}}
-  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
+  #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Pill.fbx","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Pure_White_Small.png","#metallic":"-","#normal":"-","#roughness":"-","colorTint":{"alpha":1.0,"blue":1.0,"green":1.0,"red":0.10000000149011612},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":1.0,"y":1.0}},"meshIndex":1}
     #ENT 72 71
     #COMP ft_engine::Metadata {"name":"Pill_Light"}
     #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":5.0,"y":5.0,"z":5.0}},"local":{"position":{"x":0.0,"y":4.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":0.019999999552965164,"y":8.0,"z":0.019999999552965164}}}
@@ -335,7 +335,7 @@
   #ENT 45 31
   #COMP ft_engine::Metadata {"name":"Floor_Outer"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":21.0,"y":1.0,"z":0.0},"rotation":{"x":1.1647516763674229e-18,"y":89.99995422363281,"z":9.256631912521766e-26},"scale":{"x":21.9999942779541,"y":1.0,"z":3.9999990463256836}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":21.0,"y":1.0,"z":0.0},"rotation":{"x":1.1647516763674229e-18,"y":89.99995422363281,"z":1.8513263825043532e-25},"scale":{"x":21.9999942779541,"y":1.0,"z":3.9999990463256836}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.20000000298023224,"green":0.20000000298023224,"red":0.5},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":10.0,"y":10.0}},"meshIndex":1}
 
   #ENT 46 31
@@ -347,7 +347,7 @@
   #ENT 47 31
   #COMP ft_engine::Metadata {"name":"Floor_Inner"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-12.0,"y":2.5,"z":0.0},"rotation":{"x":1.164753330728648e-18,"y":89.99996185302734,"z":1.8513263825043532e-25},"scale":{"x":3.9999990463256836,"y":1.0,"z":11.999996185302734}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-12.0,"y":2.5,"z":0.0},"rotation":{"x":1.1647535375238011e-18,"y":89.99995422363281,"z":1.8513263825043532e-25},"scale":{"x":3.9999990463256836,"y":1.0,"z":11.999996185302734}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.5,"green":0.5,"red":0.699999988079071},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":12.0,"y":4.0}},"meshIndex":1}
 
   #ENT 48 31
@@ -365,7 +365,7 @@
   #ENT 50 31
   #COMP ft_engine::Metadata {"name":"Floor_Outer_Corner"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-15.600000381469727,"y":0.9900000095367432,"z":15.600000381469727},"rotation":{"x":1.1647498152110446e-18,"y":314.9999084472656,"z":2.3141579781304416e-25},"scale":{"x":17.0,"y":1.0,"z":3.9999985694885254}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-15.600000381469727,"y":0.9900000095367432,"z":15.600000381469727},"rotation":{"x":1.164749711813468e-18,"y":314.9998779296875,"z":1.8513263825043532e-25},"scale":{"x":17.0,"y":1.0,"z":3.9999985694885254}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.20000000298023224,"green":0.20000000298023224,"red":0.5},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":10.0,"y":10.0}},"meshIndex":1}
 
   #ENT 51 31
@@ -385,7 +385,7 @@
   #ENT 54 52
   #COMP ft_engine::Metadata {"name":"Roof_Corner"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-17.5,"y":21.000045776367188,"z":-17.5},"rotation":{"x":6.830188794992864e-06,"y":314.9998779296875,"z":314.9999084472656},"scale":{"x":0.9999990463256836,"y":10.0,"z":21.999988555908203}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-17.5,"y":21.000045776367188,"z":-17.5},"rotation":{"x":8.53773599374108e-06,"y":314.9998779296875,"z":314.9998779296875},"scale":{"x":0.9999990463256836,"y":10.0,"z":21.999990463256836}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.10000000149011612,"green":0.10000000149011612,"red":0.20000000298023224},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":22.0,"y":10.0}},"meshIndex":1}
 
   #ENT 53 52
@@ -397,13 +397,13 @@
   #ENT 55 52
   #COMP ft_engine::Metadata {"name":"Roof_Corner"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-17.5,"y":21.000045776367188,"z":17.5},"rotation":{"x":1.707547198748216e-06,"y":44.99999237060547,"z":314.9998779296875},"scale":{"x":0.9999983906745911,"y":9.999998092651367,"z":21.999971389770508}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":-17.5,"y":21.000045776367188,"z":17.5},"rotation":{"x":3.415094397496432e-06,"y":44.999969482421875,"z":314.9998779296875},"scale":{"x":0.9999983310699463,"y":9.999998092651367,"z":21.999971389770508}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.10000000149011612,"green":0.10000000149011612,"red":0.20000000298023224},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":22.0,"y":10.0}},"meshIndex":1}
 
   #ENT 56 52
   #COMP ft_engine::Metadata {"name":"Roof_Corner"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":17.5,"y":21.000045776367188,"z":-17.5},"rotation":{"x":1.3660377589985728e-05,"y":224.99993896484375,"z":314.9998779296875},"scale":{"x":0.9999977946281433,"y":9.99999713897705,"z":21.999958038330078}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":17.5,"y":21.000045776367188,"z":-17.5},"rotation":{"x":1.707547198748216e-05,"y":224.99989318847656,"z":314.9998779296875},"scale":{"x":0.999997615814209,"y":9.999998092651367,"z":21.999956130981445}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.10000000149011612,"green":0.10000000149011612,"red":0.20000000298023224},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":22.0,"y":10.0}},"meshIndex":1}
 
   #ENT 57 52
@@ -415,19 +415,19 @@
   #ENT 58 52
   #COMP ft_engine::Metadata {"name":"Roof"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":24.0,"y":21.000045776367188,"z":0.0},"rotation":{"x":1.3660360309586395e-05,"y":0.0,"z":44.9999885559082},"scale":{"x":0.9999978542327881,"y":9.999998092651367,"z":21.999958038330078}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":24.0,"y":21.000045776367188,"z":0.0},"rotation":{"x":1.3660359400091693e-05,"y":0.0,"z":44.99998092651367},"scale":{"x":0.9999979138374329,"y":9.999998092651367,"z":21.999958038330078}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.10000000149011612,"green":0.10000000149011612,"red":0.20000000298023224},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":22.0,"y":10.0}},"meshIndex":1}
 
   #ENT 59 52
   #COMP ft_engine::Metadata {"name":"Roof"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":0.0,"y":21.000045776367188,"z":24.0},"rotation":{"x":1.3660377589985728e-05,"y":270.0,"z":44.999977111816406},"scale":{"x":0.9999973773956299,"y":9.999995231628418,"z":21.999954223632813}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":0.0,"y":21.000045776367188,"z":24.0},"rotation":{"x":1.8783019186230376e-05,"y":270.0,"z":44.99997329711914},"scale":{"x":0.9999972581863403,"y":9.999994277954102,"z":21.999954223632813}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.10000000149011612,"green":0.10000000149011612,"red":0.20000000298023224},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":22.0,"y":10.0}},"meshIndex":1}
 
   #ENT 60 52
   #COMP ft_engine::Metadata {"name":"Roof"}
   #COMP ft_engine::Collider {"layer":0,"offset":{"position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":-0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"primitive":{"halfSize":{"x":0.5,"y":0.5,"z":0.5}},"primitiveType":0}
-  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":0.0,"y":21.000045776367188,"z":-24.0},"rotation":{"x":1.8783019186230376e-05,"y":89.99999237060547,"z":44.99997329711914},"scale":{"x":0.9999971389770508,"y":9.999994277954102,"z":21.99995231628418}}}
+  #COMP ft_engine::Transform {"boundingBox":{"center":{"x":0.0,"y":0.0,"z":0.0},"extent":{"x":0.5,"y":0.5,"z":0.5}},"local":{"position":{"x":0.0,"y":21.000045776367188,"z":-24.0},"rotation":{"x":1.8783019186230376e-05,"y":89.99999237060547,"z":44.99997329711914},"scale":{"x":0.9999969005584717,"y":9.999994277954102,"z":21.99995231628418}}}
   #COMP ft_render::StaticMeshRenderer {"#meshPath":"..\\Data\\Models\\Static\\Cube.FBX","bEnabledOther":true,"bEnabledOwn":true,"material":{"#diffuse":"..\\Data\\Textures\\Walls\\wall_diffuse.png","#metallic":"-","#normal":"..\\Data\\Textures\\Walls\\wall_normal.png","#roughness":"-","colorTint":{"alpha":1.0,"blue":0.10000000149011612,"green":0.10000000149011612,"red":0.20000000298023224},"smoothness":1.0,"specialEffect":0.0,"uvOffset":{"x":0.0,"y":0.0},"uvTiling":{"x":22.0,"y":10.0}},"meshIndex":1}
 
 
