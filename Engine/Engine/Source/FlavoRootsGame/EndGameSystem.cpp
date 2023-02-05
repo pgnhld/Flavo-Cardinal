@@ -119,7 +119,7 @@ void ft_game::EndGameSystem::drawEscapeMenu() {
 	ImGui::Image(IMAGE("Pure_Black_Small.png"), REL(1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.8f));
 
 	ImGui::SetCursorPos(REL(0.25f, 0.25f));
-	ImGui::Image(IMAGE("Backgrounds/MainMenu.png"), REL(0.5f, 0.5f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+	ImGui::Image(IMAGE("Backgrounds/Transit.png"), REL(0.5f, 0.5f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 
 	ImGui::SetCursorPos(REL(0.40f, 0.3f));
 	if (currentEscapeButton_ == EEscapeButtonType::RESUME) {
