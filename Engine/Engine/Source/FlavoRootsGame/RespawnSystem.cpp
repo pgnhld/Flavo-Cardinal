@@ -62,6 +62,8 @@ void ft_game::RespawnSystem::onPostSceneLoaded(const EventPostSceneLoaded& event
 void ft_game::RespawnSystem::onEntityRespawn(const EventEntityRespawn& event) {
 	Entity entityToRespawn = event.entityToRespawn;
 	if (entityToRespawn.hasComponent<ft_engine::CharacterController>()) {
+		entityToRespawn.getComponent<ft_engine::CharacterController>()->is_respawning = true;
+
 		FadeScreenData* data = new FadeScreenData();
 		data->bRespawnAll = false;
 		data->toRespawn = entityToRespawn;
@@ -88,10 +90,11 @@ void ft_game::RespawnSystem::respawnEntity(Entity entity, bool bToCheckpoint) {
 }
 
 IEnumerator ft_game::RespawnSystem::fadeScreen(CoroutineArg arg) {
+	EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
+
 	FadeScreenData* data = static_cast<FadeScreenData*>(arg);
 	std::vector<eecs::ComponentHandle<ft_engine::Player>> playerComponents;
 	if (data->bRespawnAll) {
-		EntityManager& entities = ft_engine::SceneManager::getInstance().getScene().getEntityManager();
 		std::vector<Entity> players = entities.getEntitiesWithComponents<ft_engine::CharacterController>();
 		std::for_each(players.begin(), players.end(), [&](Entity& e) {
 			playerComponents.push_back(e.getComponent<ft_engine::Player>());
@@ -159,6 +162,7 @@ IEnumerator ft_game::RespawnSystem::fadeScreen(CoroutineArg arg) {
 
 	for (auto& p : playerComponents) {
 		invoke<EventFreezeInput>(new EventFreezeInput(false, p->bLocal));
+		entities.getComponent<ft_engine::CharacterController>(p->assignedTo_)->is_respawning = false;
 	}
 
 	auto enableHitDeath = [this, data](Entity ent) {

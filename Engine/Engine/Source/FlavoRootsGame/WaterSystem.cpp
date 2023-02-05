@@ -60,11 +60,15 @@ void ft_game::WaterSystem::fixedUpdate(eecs::EntityManager & entities, double de
 				if (depth < maxPlayerDepth)
 					continue;
 
+				eecs::ComponentHandle<ft_engine::CharacterController> controller = insideWaterEntity.getComponent<ft_engine::CharacterController>();
+				if (controller->is_respawning)
+					continue;
+
 				const auto it = std::find(playerNoLongerInWater.begin(), playerNoLongerInWater.end(), insideWaterEntity);
 				if (it != playerNoLongerInWater.end()) playerNoLongerInWater.erase(it);
 				const auto fieldIt = std::find(currWater->playersInWater.begin(), currWater->playersInWater.end(), insideWaterEntity);
 
-				eecs::ComponentHandle<ft_engine::CharacterController> controller = insideWaterEntity.getComponent<ft_engine::CharacterController>();
+
 				Player* player = insideWaterEntity.getComponent<Player>().get();			
 				if (fieldIt == currWater->playersInWater.end()) {
 					currWater->playersInWater.push_back(insideWaterEntity);

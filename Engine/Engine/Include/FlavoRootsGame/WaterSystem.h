@@ -19,7 +19,7 @@ namespace ft_game
 
 		const float boxHalfSize = 0.5f;
 		const float maxPlayerDepth = 0.3f;
-		const float maxPlayerTimeInWater = 4.0f;
+		const float maxPlayerTimeInWater = 1.0f;
 
 	private:
 		struct DrawWaterEffectData;
