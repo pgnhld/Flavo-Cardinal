@@ -164,4 +164,19 @@ IEnumerator ft_game::RespawnSystem::fadeScreen(CoroutineArg arg) {
 		invoke<EventFreezeInput>(new EventFreezeInput(false, p->bLocal));
 		entities.getComponent<ft_engine::CharacterController>(p->assignedTo_)->is_respawning = false;
 	}
+
+	auto enableHitDeath = [this, data](Entity ent) {
+		if (ent.hasComponent<ft_engine::CharacterController>()) {
+			ent.getComponent<ft_engine::CharacterController>()->isBulletHitDeathActive = false;
+		}
+	};
+
+	if (data->bRespawnAll) {
+		for (auto& pair : respawnableStateMap_) {
+			enableHitDeath(pair.first);
+		}
+	}
+	else {
+		enableHitDeath(data->toRespawn);
+	}
 }

@@ -2,20 +2,9 @@
 #include "Assertion.h"
 
 framework::FAudio::~FAudio() {
-	walkClipInstance_.reset();
-	currentBackgroundMusic_.reset();
-	shootClipInstance_.reset();
-	zahidClipInstance.reset();
-
-	walkClip_.reset();
-	shootClip_.reset();
-	zahidClip_.reset();
-
 	backgroundAudioEngine_->Suspend();
-	walkAudioEngine_->Suspend();
 	ambientAudioEngine_->Suspend();
 	clipAudioEngine_->Suspend();
-	zahidAudioEngine_->Suspend();
 }
 
 framework::FAudio& framework::FAudio::getInstance() {
@@ -30,10 +19,21 @@ void framework::FAudio::playOnce2D(AudioClip2DType type) {
 		return;
 	} 
 	
-	if (type == AudioClip2DType::ZAHID_LAUGH) {
-		zahidClipInstance->Stop();
-		//zahidClipInstance->SetVolume(3.0f);
-		zahidClipInstance->Play();
+	if (type == AudioClip2DType::BULLET_HIT_REACTION) {
+		bulletHitReactionClipInstance_->Stop();
+		bulletHitReactionClipInstance_->Play();
+		return;
+	}
+
+	if (type == AudioClip2DType::PILL) {
+		pillClipInstance_->Stop();
+		pillClipInstance_->Play();
+		return;
+	}
+
+	if (type == AudioClip2DType::PILL_REACTION) {
+		pillReactionClipInstance_->Stop();
+		pillReactionClipInstance_->Play();
 		return;
 	}
 
@@ -74,44 +74,38 @@ void framework::FAudio::playBackgroundMusic(BackgroundMusicType type) {
 }
 
 void framework::FAudio::setWalkSound(bool bPlay) {
-	DirectX::SoundState state = walkClipInstance_->GetState();
-	if (bPlay) {
-		walkClipInstance_->Play(true);
-	}
-	else {
-		walkClipInstance_->Stop();
-	}
 }
 
 void framework::FAudio::update() {
 	backgroundAudioEngine_->Update();
 	clipAudioEngine_->Update();
-	walkAudioEngine_->Update();
 	ambientAudioEngine_->Update();
 }
 
 framework::FAudio::FAudio()
-	: backgroundAudioEngine_(std::make_unique<DirectX::AudioEngine>()),
-	  walkAudioEngine_(std::make_unique<DirectX::AudioEngine>()),
-	  zahidAudioEngine_(std::make_unique<DirectX::AudioEngine>()),
-	  clipAudioEngine_(std::make_unique<DirectX::AudioEngine>()),
-	  ambientAudioEngine_(std::make_unique<DirectX::AudioEngine>()),
-	  walkClip_(std::make_unique<DirectX::SoundEffect>(walkAudioEngine_.get(), L"../Data/Sounds/footsteps-metal_stairs-loop.wav")),
-	  zahidClip_(std::make_unique<DirectX::SoundEffect>(zahidAudioEngine_.get(), L"../Data/Sounds/zahid_stutter.wav")),
-	  shootClip_(std::make_unique<DirectX::SoundEffect>(clipAudioEngine_.get(), L"../Data/Sounds/sci-fi_weapon_blaster_laser_boom_zap_08.wav")) {
+	: backgroundAudioEngine_(std::make_unique<DirectX::AudioEngine>())
+	, clipAudioEngine_(std::make_unique<DirectX::AudioEngine>())
+	, ambientAudioEngine_(std::make_unique<DirectX::AudioEngine>()) {
+
 	backgroundAudioEngine_->SetMasterVolume(0.5f);
 	clipAudioEngine_->SetMasterVolume(0.5f);
-	walkAudioEngine_->SetMasterVolume(0.5f);
-	zahidAudioEngine_->SetMasterVolume(2.5f);
 	ambientAudioEngine_->SetMasterVolume(0.5f);
 	backgroundMusicPaths_.emplace(BackgroundMusicType::DECHOST, L"../Data/Sounds/dechost.wav");
 	backgroundMusicPaths_.emplace(BackgroundMusicType::PAPA_2138, L"../Data/Sounds/papa2138.wav");
 	backgroundMusicPaths_.emplace(BackgroundMusicType::BACKGROUND, L"../Data/Sounds/flavo_cardinal_background.wav");
 	backgroundMusicPaths_.emplace(BackgroundMusicType::BOSS_FIGHT, L"../Data/Sounds/flavo_cyborg_boss_fight.wav");
 
-	audioClip2DPaths_.emplace(AudioClip2DType::ZAHID_LAUGH, L"../Data/Sounds/zahid_stutter.wav");
+	audioClip2DPaths_.emplace(AudioClip2DType::SHOOT, L"../Data/Sounds/shoot.wav");
+	audioClip2DPaths_.emplace(AudioClip2DType::BULLET_HIT_REACTION, L"../Data/Sounds/hit_reaction.wav");
+	audioClip2DPaths_.emplace(AudioClip2DType::PILL, L"../Data/Sounds/pill.wav");
+	audioClip2DPaths_.emplace(AudioClip2DType::PILL_REACTION, L"../Data/Sounds/co.wav");
 
-	walkClipInstance_ = walkClip_->CreateInstance();
-	zahidClipInstance = zahidClip_->CreateInstance();
-	shootClipInstance_ = shootClip_->CreateInstance();
+	for (const auto& audioClip2DPath : audioClip2DPaths_) {
+		loadedSounds2D_.emplace(audioClip2DPath.first, std::make_unique<DirectX::SoundEffect>(clipAudioEngine_.get(), audioClip2DPath.second.c_str()));
+	}
+
+	shootClipInstance_ = loadedSounds2D_[AudioClip2DType::SHOOT]->CreateInstance();
+	bulletHitReactionClipInstance_ = loadedSounds2D_[AudioClip2DType::BULLET_HIT_REACTION]->CreateInstance();
+	pillClipInstance_ = loadedSounds2D_[AudioClip2DType::PILL]->CreateInstance();
+	pillReactionClipInstance_ = loadedSounds2D_[AudioClip2DType::PILL_REACTION]->CreateInstance();
 }

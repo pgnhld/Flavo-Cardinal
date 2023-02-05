@@ -18,7 +18,9 @@ namespace framework
 	enum class AudioClip2DType
 	{
 		SHOOT,
-		ZAHID_LAUGH
+		BULLET_HIT_REACTION,
+		PILL,
+		PILL_REACTION
 	};
 
 	class FAudio
@@ -34,19 +36,15 @@ namespace framework
 	private:
 		FAudio();
 		std::unique_ptr<DirectX::AudioEngine> backgroundAudioEngine_;
-		std::unique_ptr<DirectX::AudioEngine> walkAudioEngine_;
-		std::unique_ptr<DirectX::AudioEngine> zahidAudioEngine_;
 		std::unique_ptr<DirectX::AudioEngine> clipAudioEngine_;
 		std::unique_ptr<DirectX::AudioEngine> ambientAudioEngine_;
 
 		std::unique_ptr<DirectX::SoundEffectInstance> currentBackgroundMusic_;
-		std::unique_ptr<DirectX::SoundEffectInstance> walkClipInstance_;
+		
 		std::unique_ptr<DirectX::SoundEffectInstance> shootClipInstance_;
-		std::unique_ptr<DirectX::SoundEffectInstance> zahidClipInstance;
-
-		std::unique_ptr<DirectX::SoundEffect> walkClip_;
-		std::unique_ptr<DirectX::SoundEffect> zahidClip_;
-		std::unique_ptr<DirectX::SoundEffect> shootClip_;
+		std::unique_ptr<DirectX::SoundEffectInstance> bulletHitReactionClipInstance_;
+		std::unique_ptr<DirectX::SoundEffectInstance> pillClipInstance_;
+		std::unique_ptr<DirectX::SoundEffectInstance> pillReactionClipInstance_;
 
 		std::unordered_map<AudioClip2DType, std::wstring> audioClip2DPaths_;
 		std::unordered_map<AudioClip2DType, std::unique_ptr<DirectX::SoundEffect>> loadedSounds2D_;
