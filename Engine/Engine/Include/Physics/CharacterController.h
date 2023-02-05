@@ -31,6 +31,8 @@ namespace ft_engine
 		Coroutine leftPaintCoroutine;
 		Coroutine rightPaintCoroutine;
 
+		bool isBulletHitDeathActive = false;
+
 		const float maximumJumpDelay = 0.3f;
 		const float jumpCooldown = 0.3f;
 
