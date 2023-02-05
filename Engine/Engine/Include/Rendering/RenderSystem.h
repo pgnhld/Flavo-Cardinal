@@ -196,6 +196,7 @@ namespace ft_render
 		FAmbientOcclusionSSAO	ao_;
 
 		ID3D11DepthStencilState*	depthStencilState_NoDepthWrite;
+		ID3D11DepthStencilState*	depthStencilState_DepthWrite;
 		ID3D11DepthStencilState*	depthStencilState_Skybox;
 
 

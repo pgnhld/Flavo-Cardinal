@@ -310,6 +310,12 @@ ft_render::RenderSystem::RenderSystem() {
 		dsDesc.StencilEnable = FALSE;
 		dev->CreateDepthStencilState(&dsDesc, &depthStencilState_NoDepthWrite);
 
+		dsDesc.DepthEnable = TRUE;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;		// disable writing to depth buffer
+		dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+		dsDesc.StencilEnable = FALSE;
+		dev->CreateDepthStencilState(&dsDesc, &depthStencilState_DepthWrite);
+
 		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		dsDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 		dev->CreateDepthStencilState(&dsDesc, &depthStencilState_Skybox);
@@ -366,6 +372,7 @@ ft_render::RenderSystem::~RenderSystem() {
 	SAFE_RELEASE(inputLayoutSkinnedGeometry_);
 
 	SAFE_RELEASE(depthStencilState_NoDepthWrite);
+	SAFE_RELEASE(depthStencilState_DepthWrite);
 	SAFE_RELEASE(depthStencilState_Skybox);
 
 	SAFE_RELEASE(depthOnlyStaticMeshesVS_);
@@ -765,7 +772,55 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 
 		renderer.updateViewConstantBuffer(cameraForm->getWorldPosition(), matView, matProj);
 
+		// Normal geom
+		pDevCon->OMSetDepthStencilState(depthStencilState_DepthWrite, 0);
+		for (uint32 meshIndex = 0; meshIndex < staticMeshesCount; meshIndex++) {
+			StaticMeshRenderer* staticmesh = meshes[meshIndex].getComponent<ft_render::StaticMeshRenderer>().get();
+			if (meshes[meshIndex].hasComponent<ft_engine::Player>()) {
+				ft_engine::Player* meshPlayer = meshes[meshIndex].getComponent<ft_engine::Player>().get();
+				if (meshPlayer->bLocal == cameraPlayer->bLocal) {
+					if (!staticmesh->bEnabledOwn)
+						continue;
+				} else {
+					if (!staticmesh->bEnabledOther)
+						continue;
+				}
+			} else {
+				if (!staticmesh->bEnabledOwn)
+					continue;
+			}
 
+			const float Alpha = staticmesh->getMaterial().colorTint.A();
+			if (Alpha > 0.9999f)
+			{
+				ft_engine::Transform* xform = meshes[meshIndex].getComponent<ft_engine::Transform>().get();
+				Matrix matWorld = xform->getWorldTransform();
+				DirectX::BoundingBox boundingBox = xform->getTransformedBoundingBox();
+
+				if (!checkIntersection(boundingFrustrum, boundingBox)) {
+					continue;
+				}
+
+				// Set proper pixel shader
+				float blendFactor[4] = { Alpha, Alpha, Alpha, Alpha };
+				if (meshes[meshIndex].hasComponent<ft_game::Hologram>()) {
+					pDevCon->PSSetShader( forwardPassHologramPS_, nullptr, 0 );
+					pDevCon->OMSetBlendState( blendStateForwardPassTransparencyFromAlpha_, nullptr, 0xffffffff);
+				} else if (meshes[meshIndex].hasComponent<ft_game::Water>()) {
+					pDevCon->PSSetShader( waterPS_, nullptr, 0 );
+					pDevCon->OMSetBlendState( blendStateForwardPassTransparency_, blendFactor, 0xffffffff );				
+				} else {					
+					pDevCon->PSSetShader( forwardPassSimplePS_, nullptr, 0 );
+					pDevCon->OMSetBlendState( blendStateForwardPassTransparency_, blendFactor, 0xffffffff );
+				}
+
+				const FMaterial& meshMaterial = staticmesh->material_;
+				renderer.updateStaticObjectConstantBuffer(matWorld, meshMaterial.uvTiling, meshMaterial.uvOffset, meshMaterial.colorTint.ToVector3(), meshMaterial.specialEffect, meshMaterial.smoothness);
+				staticmesh->render();
+			}
+		}
+
+		// Transparency
 		pDevCon->OMSetDepthStencilState(depthStencilState_NoDepthWrite, 0);
 		for (uint32 meshIndex = 0; meshIndex < staticMeshesCount; meshIndex++) {
 			StaticMeshRenderer* staticmesh = meshes[meshIndex].getComponent<ft_render::StaticMeshRenderer>().get();
@@ -784,7 +839,7 @@ void ft_render::RenderSystem::update(eecs::EntityManager& entities, double delta
 			}
 
 			const float Alpha = staticmesh->getMaterial().colorTint.A();
-			//if (Alpha < 0.9999f)
+			if (Alpha < 0.9999f)
 			{
 				ft_engine::Transform* xform = meshes[meshIndex].getComponent<ft_engine::Transform>().get();
 				Matrix matWorld = xform->getWorldTransform();
