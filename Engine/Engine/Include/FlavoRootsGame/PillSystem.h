@@ -25,7 +25,7 @@ namespace ft_game
 		const int maxPillsToCollect = 5;
 
 		float currentGameTime = 0.0f;
-		const float maxGameTime = 180.0f;
+		const float maxGameTime = 120.0f;
 
 		bool bEnded = false;
 	};

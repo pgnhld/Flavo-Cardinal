@@ -29,7 +29,7 @@ void ft_game::PillSystem::update(eecs::EntityManager& entities, double deltaTime
 	{
 		ft_engine::Transform* pill_transform = pill_entity.getComponent<ft_engine::Transform>().get();
 		Pill* pill = pill_entity.getComponent<Pill>().get();
-		pill_transform->rotate(DEG2RAD(pill->rotationSpeedDeg) * static_cast<float>(deltaTime), Vector3::UnitZ);
+		pill_transform->rotate(DEG2RAD(pill->rotationSpeedDeg) * static_cast<float>(deltaTime), Vector3::UnitY);
 	}
 
 	// UI
@@ -97,8 +97,8 @@ void ft_game::PillSystem::update(eecs::EntityManager& entities, double deltaTime
 		float time_left = maxGameTime - currentGameTime;
 		if (time_left < 0.0f)
 			time_left = 0.0001f;
-		int left_minutes = (int)(time_left / 60.0f);
-		int left_seconds = time_left - 60.0f * (float)left_minutes;
+		int left_hundreds = (int)(time_left / 100.0f);
+		int left_seconds = time_left - 100.0f * (float)left_hundreds;
 		int sec_digit1 = (int)(left_seconds / 10.0f);
 		int sec_digit2 = left_seconds - 10.0f * (float)sec_digit1;
 
@@ -106,7 +106,7 @@ void ft_game::PillSystem::update(eecs::EntityManager& entities, double deltaTime
 		ImGui::SetCursorPos(ImVec2(start_x_pix - 15.0f, 36.0f));
 		ImGui::Image(IMAGE("Frame.png"), frame_size, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 
-		int digits[] = { 0, left_minutes, sec_digit1, sec_digit2 };
+		int digits[] = { 0, left_hundreds, sec_digit1, sec_digit2 };
 		for (int i = 0; i < num_digits; ++i)
 		{
 			ImGui::SetCursorPos(ImVec2(start_x_pix + (float)i * scale_x * (digit_width_x + offset_x_rel * digit_width_x), 43.0f));
@@ -131,7 +131,7 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		invokeNonConst(event.get());
 
 		if (event->foundEntities.empty())
-			return;
+			continue;
 
 		bool young_in_trigger = false;
 		for (Entity& ent : event->foundEntities)
@@ -154,7 +154,7 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL);
 			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL_REACTION);
 
-			const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;
+			const bool should_game_end = pillsCollectedSoFar >= maxPillsToCollect;
 			if (should_game_end)
 			{
 				EventAllPillsCollected* event_all = new EventAllPillsCollected();

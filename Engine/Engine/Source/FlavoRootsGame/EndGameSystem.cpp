@@ -179,14 +179,14 @@ IEnumerator ft_game::EndGameSystem::endGameScreenCoroutine(CoroutineArg arg) {
 		ImGui::SetCursorPos(REL(0.0f, 0.0f));
 		ImGui::Image(IMAGE((data->oldPapaWon ? "LoadingScreens/OldPapaWon.png" : "LoadingScreens/YoungMagickWon.png")), REL(1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, alpha));
 
-		ImGui::SetCursorPos(REL(0.2f, 0.7f));
+		ImGui::SetCursorPos(REL(0.2f, 0.8f));
 		if (currentButton == 0) {
 			ImGui::Image(IMAGE("Buttons/menu_c.png"), buttonSize, ImVec4(1.0f, 1.0f, 1.0f, alpha));
 		} else {
 			ImGui::Image(IMAGE("Buttons/menu.png"), buttonSize, ImVec4(1.0f, 1.0f, 1.0f, alpha));
 		}
 
-		ImGui::SetCursorPos(REL(0.5f, 0.7f));
+		ImGui::SetCursorPos(REL(0.5f, 0.8f));
 		if (currentButton == 1) {
 			ImGui::Image(IMAGE("Buttons/restart_c.png"), buttonSize, ImVec4(1.0f, 1.0f, 1.0f, alpha));
 		} else {
