@@ -106,7 +106,7 @@ void ft_game::MainMenuSystem::drawMenuButtons() {
 	ImGui::SetCursorPos(buttonPos);
 	if (currentState_ == MainMenuState::NEW_GAME) {
 		ImGui::Image(IMAGE("Buttons/start_c.png"), buttonSize, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-		ImGui::SetCursorPos(REL(0.35f, 0.3f));
+		ImGui::SetCursorPos(REL(0.35f, 0.4f));
 		ImGui::Image(IMAGE("Buttons/bitcoin_mini.png"), bitcoinSize, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 	} else {
 		ImGui::Image(IMAGE("Buttons/start.png"), buttonSize, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
