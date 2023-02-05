@@ -12,6 +12,7 @@
 #include "SceneManager.h"
 #include "ImGuiExtension.h"
 #include "imgui_internal.h"
+#include "FAudio.h"
 
 ft_game::PillSystem::PillSystem() {
 	subscribe<EventPostSceneLoaded>(this, &PillSystem::onSceneLoaded);
@@ -143,6 +144,9 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		{
 			++pillsCollectedSoFar;
 			entities.destroy(pill_entity);
+
+			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL);
+			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL_REACTION);
 
 			const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;
 			if (should_game_end)

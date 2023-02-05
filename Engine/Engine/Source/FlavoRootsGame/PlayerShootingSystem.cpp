@@ -200,6 +200,8 @@ void ft_game::PlayerShootingSystem::handleAnotherPlayerHit(bool bOtherLocal, Wea
 	if (ASSERT_FAIL(controller != nullptr, "Controller is null"))
 		return;
 
+	framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::BULLET_HIT_REACTION);
+
 	PaintEffectData* data = new PaintEffectData();
 	data->bLocalHit = bOtherLocal;
 	data->entity_to_respawn = *entity_controller;
