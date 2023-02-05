@@ -154,7 +154,7 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL);
 			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL_REACTION);
 
-			const bool should_game_end = pillsCollectedSoFar > maxPillsToCollect;
+			const bool should_game_end = pillsCollectedSoFar >= maxPillsToCollect;
 			if (should_game_end)
 			{
 				EventAllPillsCollected* event_all = new EventAllPillsCollected();
