@@ -143,6 +143,12 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		if (young_in_trigger)
 		{
 			++pillsCollectedSoFar;
+
+			std::vector<eecs::ComponentHandle<ft_engine::Transform>> destroyable = pill_entity.getComponent<ft_engine::Transform>()->getChildren();
+			for (auto& tr : destroyable)
+			{
+				entities.destroy(tr->assignedTo_);
+			}
 			entities.destroy(pill_entity);
 
 			framework::FAudio::getInstance().playOnce2D(framework::AudioClip2DType::PILL);
