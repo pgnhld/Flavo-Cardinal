@@ -29,7 +29,7 @@ void ft_game::PillSystem::update(eecs::EntityManager& entities, double deltaTime
 	{
 		ft_engine::Transform* pill_transform = pill_entity.getComponent<ft_engine::Transform>().get();
 		Pill* pill = pill_entity.getComponent<Pill>().get();
-		pill_transform->rotate(DEG2RAD(pill->rotationSpeedDeg) * static_cast<float>(deltaTime), Vector3::UnitZ);
+		pill_transform->rotate(DEG2RAD(pill->rotationSpeedDeg) * static_cast<float>(deltaTime), Vector3::UnitY);
 	}
 
 	// UI
@@ -131,7 +131,7 @@ void ft_game::PillSystem::fixedUpdate(EntityManager& entities, double fixedDelta
 		invokeNonConst(event.get());
 
 		if (event->foundEntities.empty())
-			return;
+			continue;
 
 		bool young_in_trigger = false;
 		for (Entity& ent : event->foundEntities)
